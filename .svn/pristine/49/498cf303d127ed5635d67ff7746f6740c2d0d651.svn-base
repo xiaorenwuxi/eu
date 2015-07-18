@@ -1,0 +1,112 @@
+package com.youxuan.eu.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.alibaba.fastjson.JSON;
+import com.youxuan.eu.model.User;
+import com.youxuan.eu.service.UserService;
+import com.youxuan.eu.util.MD5;
+
+/**
+ * 用户提交控制类
+ * 
+ * @author 邹龙
+ *
+ */
+@Controller
+@RequestMapping("/usercontroller")
+public class UserController {
+	@Autowired
+	public UserService userService;
+
+
+	@SuppressWarnings("static-access")
+	
+	@RequestMapping("regist")
+	public ModelAndView  addUser(User user,HttpServletResponse response) {
+		MD5 md5=new MD5();
+		user.setPassword(md5.md5(user.getPassword()));
+		userService.add(user);
+		Cookie cookie_login=new Cookie("Islogin", "true");
+		Cookie cookie_user=new Cookie("user", JSON.toJSONString(user));
+		response.addCookie(cookie_login);
+		response.addCookie(cookie_user);
+		return new ModelAndView("/jsp/Main");
+	}
+
+	/**
+	 * 用来用户登陆
+	 * 
+	 * @param data可以是用户名
+	 *            ，电话号码，邮箱，是提交数据中的索引值
+	 * @param password密码
+	 * @param spring自动传入的响应
+	 * @return
+	 */
+	@SuppressWarnings("static-access")
+	@RequestMapping("login")
+	public void login(String data, String password,
+			HttpServletResponse response) {
+		PrintWriter out = null;
+		MD5 md5=new MD5();
+		try {
+			 out=response.getWriter();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		User GetDate = getuser(data);
+
+		if (GetDate != null && GetDate.getPassword().equals(md5.md5(password)))
+		{
+			out.write(JSON.toJSONString(GetDate));
+		}
+		else {
+			out.write("登陆失败");
+		}
+		out.flush();
+		out.close();
+	}
+
+	/**
+	 * 根据提供的data值获取用户，data可以是用户名，电话，邮箱
+	 * 
+	 * @param data
+	 *            传入的获取值
+	 * @return 返回一个用户（User）
+	 */
+	public User getuser(String data) {
+		User selectUser = new User();
+		if (data.indexOf("@") > 0)
+			selectUser.setEmail(data);
+		else if (isMobileNO(data))
+			selectUser.setMobile(data);
+		else
+			selectUser.setUserName(data);
+		return userService.select(selectUser);
+	}
+
+	/**
+	 * 判断是否为电话号码
+	 * 
+	 * @param mobiles要判断的字符串
+	 * @return 为boolean 是否是电话号码
+	 */
+	public boolean isMobileNO(String mobiles) {
+		Pattern p = Pattern
+				.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
+		Matcher m = p.matcher(mobiles);
+		return m.matches();
+	}
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.AdmanageMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Admanage" >
+    <id column="admanage_id" property="admanageId" jdbcType="INTEGER" />
+    <result column="adtype_id" property="adtypeId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="admode" property="admode" jdbcType="CHAR" />
+    <result column="picurl" property="picurl" jdbcType="VARCHAR" />
+    <result column="linkurl" property="linkurl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="checkinfo" property="checkinfo" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Admanage" extends="BaseResultMap" >
+    <result column="adtext" property="adtext" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admanage_id, adtype_id, title, admode, picurl, linkurl, create_time, checkinfo
+  </sql>
+  <sql id="Blob_Column_List" >
+    adtext
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from admanage
+    where admanage_id = #{admanageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admanage
+    where admanage_id = #{admanageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="admanageId" parameterType="com.youxuan.eu.model.Admanage" >
+    insert into admanage (admanage_id, adtype_id, title, 
+      admode, picurl, linkurl, 
+      create_time, checkinfo, adtext
+      )
+    values (#{admanageId,jdbcType=INTEGER}, #{adtypeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{admode,jdbcType=CHAR}, #{picurl,jdbcType=VARCHAR}, #{linkurl,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=INTEGER}, #{checkinfo,jdbcType=INTEGER}, #{adtext,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Admanage" >
+    insert into admanage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admanageId != null" >
+        admanage_id,
+      </if>
+      <if test="adtypeId != null" >
+        adtype_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="admode != null" >
+        admode,
+      </if>
+      <if test="picurl != null" >
+        picurl,
+      </if>
+      <if test="linkurl != null" >
+        linkurl,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo,
+      </if>
+      <if test="adtext != null" >
+        adtext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admanageId != null" >
+        #{admanageId,jdbcType=INTEGER},
+      </if>
+      <if test="adtypeId != null" >
+        #{adtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="admode != null" >
+        #{admode,jdbcType=CHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkurl != null" >
+        #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="checkinfo != null" >
+        #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="adtext != null" >
+        #{adtext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Admanage" >
+    update admanage
+    <set >
+      <if test="adtypeId != null" >
+        adtype_id = #{adtypeId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="admode != null" >
+        admode = #{admode,jdbcType=CHAR},
+      </if>
+      <if test="picurl != null" >
+        picurl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkurl != null" >
+        linkurl = #{linkurl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo = #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="adtext != null" >
+        adtext = #{adtext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where admanage_id = #{admanageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Admanage" >
+    update admanage
+    set adtype_id = #{adtypeId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      admode = #{admode,jdbcType=CHAR},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      linkurl = #{linkurl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      checkinfo = #{checkinfo,jdbcType=INTEGER},
+      adtext = #{adtext,jdbcType=LONGVARCHAR}
+    where admanage_id = #{admanageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Admanage" >
+    update admanage
+    set adtype_id = #{adtypeId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      admode = #{admode,jdbcType=CHAR},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      linkurl = #{linkurl,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      checkinfo = #{checkinfo,jdbcType=INTEGER}
+    where admanage_id = #{admanageId,jdbcType=INTEGER}
+  </update>
+</mapper>

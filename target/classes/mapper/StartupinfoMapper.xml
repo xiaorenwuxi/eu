@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.StartupinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Startupinfo" >
+    <id column="startupinfo_id" property="startupinfoId" jdbcType="INTEGER" />
+    <result column="partnertype_id" property="partnertypeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="picurl" property="picurl" jdbcType="VARCHAR" />
+    <result column="tdnumber" property="tdnumber" jdbcType="INTEGER" />
+    <result column="prodirection" property="prodirection" jdbcType="VARCHAR" />
+    <result column="prophase" property="prophase" jdbcType="INTEGER" />
+    <result column="valuation_time" property="valuationTime" jdbcType="INTEGER" />
+    <result column="valuation_value" property="valuationValue" jdbcType="REAL" />
+    <result column="investment" property="investment" jdbcType="INTEGER" />
+    <result column="investment_value" property="investmentValue" jdbcType="REAL" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="Attribute_76" property="attribute76" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Startupinfo" extends="BaseResultMap" >
+    <result column="tdconcept" property="tdconcept" jdbcType="LONGVARCHAR" />
+    <result column="proinfo" property="proinfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    startupinfo_id, partnertype_id, user_id, area_id, province_id, city_id, title, picurl, 
+    tdnumber, prodirection, prophase, valuation_time, valuation_value, investment, investment_value, 
+    create_time, Attribute_76
+  </sql>
+  <sql id="Blob_Column_List" >
+    tdconcept, proinfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from startupinfo
+    where startupinfo_id = #{startupinfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from startupinfo
+    where startupinfo_id = #{startupinfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="startupinfoId" parameterType="com.youxuan.eu.model.Startupinfo" >
+    insert into startupinfo (startupinfo_id, partnertype_id, user_id, 
+      area_id, province_id, city_id, 
+      title, picurl, tdnumber, 
+      prodirection, prophase, valuation_time, 
+      valuation_value, investment, investment_value, 
+      create_time, Attribute_76, tdconcept, 
+      proinfo)
+    values (#{startupinfoId,jdbcType=INTEGER}, #{partnertypeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{areaId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{picurl,jdbcType=VARCHAR}, #{tdnumber,jdbcType=INTEGER}, 
+      #{prodirection,jdbcType=VARCHAR}, #{prophase,jdbcType=INTEGER}, #{valuationTime,jdbcType=INTEGER}, 
+      #{valuationValue,jdbcType=REAL}, #{investment,jdbcType=INTEGER}, #{investmentValue,jdbcType=REAL}, 
+      #{createTime,jdbcType=INTEGER}, #{attribute76,jdbcType=CHAR}, #{tdconcept,jdbcType=LONGVARCHAR}, 
+      #{proinfo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Startupinfo" >
+    insert into startupinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="startupinfoId != null" >
+        startupinfo_id,
+      </if>
+      <if test="partnertypeId != null" >
+        partnertype_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="picurl != null" >
+        picurl,
+      </if>
+      <if test="tdnumber != null" >
+        tdnumber,
+      </if>
+      <if test="prodirection != null" >
+        prodirection,
+      </if>
+      <if test="prophase != null" >
+        prophase,
+      </if>
+      <if test="valuationTime != null" >
+        valuation_time,
+      </if>
+      <if test="valuationValue != null" >
+        valuation_value,
+      </if>
+      <if test="investment != null" >
+        investment,
+      </if>
+      <if test="investmentValue != null" >
+        investment_value,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="attribute76 != null" >
+        Attribute_76,
+      </if>
+      <if test="tdconcept != null" >
+        tdconcept,
+      </if>
+      <if test="proinfo != null" >
+        proinfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="startupinfoId != null" >
+        #{startupinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="partnertypeId != null" >
+        #{partnertypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="tdnumber != null" >
+        #{tdnumber,jdbcType=INTEGER},
+      </if>
+      <if test="prodirection != null" >
+        #{prodirection,jdbcType=VARCHAR},
+      </if>
+      <if test="prophase != null" >
+        #{prophase,jdbcType=INTEGER},
+      </if>
+      <if test="valuationTime != null" >
+        #{valuationTime,jdbcType=INTEGER},
+      </if>
+      <if test="valuationValue != null" >
+        #{valuationValue,jdbcType=REAL},
+      </if>
+      <if test="investment != null" >
+        #{investment,jdbcType=INTEGER},
+      </if>
+      <if test="investmentValue != null" >
+        #{investmentValue,jdbcType=REAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="attribute76 != null" >
+        #{attribute76,jdbcType=CHAR},
+      </if>
+      <if test="tdconcept != null" >
+        #{tdconcept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proinfo != null" >
+        #{proinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Startupinfo" >
+    update startupinfo
+    <set >
+      <if test="partnertypeId != null" >
+        partnertype_id = #{partnertypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        picurl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="tdnumber != null" >
+        tdnumber = #{tdnumber,jdbcType=INTEGER},
+      </if>
+      <if test="prodirection != null" >
+        prodirection = #{prodirection,jdbcType=VARCHAR},
+      </if>
+      <if test="prophase != null" >
+        prophase = #{prophase,jdbcType=INTEGER},
+      </if>
+      <if test="valuationTime != null" >
+        valuation_time = #{valuationTime,jdbcType=INTEGER},
+      </if>
+      <if test="valuationValue != null" >
+        valuation_value = #{valuationValue,jdbcType=REAL},
+      </if>
+      <if test="investment != null" >
+        investment = #{investment,jdbcType=INTEGER},
+      </if>
+      <if test="investmentValue != null" >
+        investment_value = #{investmentValue,jdbcType=REAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="attribute76 != null" >
+        Attribute_76 = #{attribute76,jdbcType=CHAR},
+      </if>
+      <if test="tdconcept != null" >
+        tdconcept = #{tdconcept,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="proinfo != null" >
+        proinfo = #{proinfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where startupinfo_id = #{startupinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Startupinfo" >
+    update startupinfo
+    set partnertype_id = #{partnertypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      tdnumber = #{tdnumber,jdbcType=INTEGER},
+      prodirection = #{prodirection,jdbcType=VARCHAR},
+      prophase = #{prophase,jdbcType=INTEGER},
+      valuation_time = #{valuationTime,jdbcType=INTEGER},
+      valuation_value = #{valuationValue,jdbcType=REAL},
+      investment = #{investment,jdbcType=INTEGER},
+      investment_value = #{investmentValue,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      Attribute_76 = #{attribute76,jdbcType=CHAR},
+      tdconcept = #{tdconcept,jdbcType=LONGVARCHAR},
+      proinfo = #{proinfo,jdbcType=LONGVARCHAR}
+    where startupinfo_id = #{startupinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Startupinfo" >
+    update startupinfo
+    set partnertype_id = #{partnertypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      picurl = #{picurl,jdbcType=VARCHAR},
+      tdnumber = #{tdnumber,jdbcType=INTEGER},
+      prodirection = #{prodirection,jdbcType=VARCHAR},
+      prophase = #{prophase,jdbcType=INTEGER},
+      valuation_time = #{valuationTime,jdbcType=INTEGER},
+      valuation_value = #{valuationValue,jdbcType=REAL},
+      investment = #{investment,jdbcType=INTEGER},
+      investment_value = #{investmentValue,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=INTEGER},
+      Attribute_76 = #{attribute76,jdbcType=CHAR}
+    where startupinfo_id = #{startupinfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

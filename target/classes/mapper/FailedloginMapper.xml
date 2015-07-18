@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.FailedloginMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Failedlogin" >
+    <id column="failedlogin_id" property="failedloginId" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+    <result column="count" property="count" jdbcType="SMALLINT" />
+    <result column="isadmin" property="isadmin" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    failedlogin_id, uname, ip, time, count, isadmin
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from failedlogin
+    where failedlogin_id = #{failedloginId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from failedlogin
+    where failedlogin_id = #{failedloginId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="failedloginId" parameterType="com.youxuan.eu.model.Failedlogin" >
+    insert into failedlogin (failedlogin_id, uname, ip, 
+      time, count, isadmin
+      )
+    values (#{failedloginId,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{time,jdbcType=INTEGER}, #{count,jdbcType=SMALLINT}, #{isadmin,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Failedlogin" >
+    insert into failedlogin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="failedloginId != null" >
+        failedlogin_id,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="isadmin != null" >
+        isadmin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="failedloginId != null" >
+        #{failedloginId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=SMALLINT},
+      </if>
+      <if test="isadmin != null" >
+        #{isadmin,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Failedlogin" >
+    update failedlogin
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=SMALLINT},
+      </if>
+      <if test="isadmin != null" >
+        isadmin = #{isadmin,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where failedlogin_id = #{failedloginId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Failedlogin" >
+    update failedlogin
+    set uname = #{uname,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      time = #{time,jdbcType=INTEGER},
+      count = #{count,jdbcType=SMALLINT},
+      isadmin = #{isadmin,jdbcType=SMALLINT}
+    where failedlogin_id = #{failedloginId,jdbcType=INTEGER}
+  </update>
+</mapper>

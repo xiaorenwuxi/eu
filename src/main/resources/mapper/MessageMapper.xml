@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Message" >
+    <id column="message_id" property="messageId" jdbcType="INTEGER" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="htop" property="htop" jdbcType="SMALLINT" />
+    <result column="rtop" property="rtop" jdbcType="SMALLINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="retime" property="retime" jdbcType="INTEGER" />
+    <result column="checkinfo" property="checkinfo" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.MessageWithBLOBs" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="recont" property="recont" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    message_id, nickname, contact, htop, rtop, ip, retime, checkinfo, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content, recont
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="messageId" parameterType="com.youxuan.eu.model.MessageWithBLOBs" >
+    insert into message (message_id, nickname, contact, 
+      htop, rtop, ip, retime, 
+      checkinfo, create_time, content, 
+      recont)
+    values (#{messageId,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
+      #{htop,jdbcType=SMALLINT}, #{rtop,jdbcType=SMALLINT}, #{ip,jdbcType=VARCHAR}, #{retime,jdbcType=INTEGER}, 
+      #{checkinfo,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}, 
+      #{recont,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.MessageWithBLOBs" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        message_id,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="htop != null" >
+        htop,
+      </if>
+      <if test="rtop != null" >
+        rtop,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="retime != null" >
+        retime,
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="recont != null" >
+        recont,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messageId != null" >
+        #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="htop != null" >
+        #{htop,jdbcType=SMALLINT},
+      </if>
+      <if test="rtop != null" >
+        #{rtop,jdbcType=SMALLINT},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="retime != null" >
+        #{retime,jdbcType=INTEGER},
+      </if>
+      <if test="checkinfo != null" >
+        #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recont != null" >
+        #{recont,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.MessageWithBLOBs" >
+    update message
+    <set >
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="htop != null" >
+        htop = #{htop,jdbcType=SMALLINT},
+      </if>
+      <if test="rtop != null" >
+        rtop = #{rtop,jdbcType=SMALLINT},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="retime != null" >
+        retime = #{retime,jdbcType=INTEGER},
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo = #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recont != null" >
+        recont = #{recont,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.MessageWithBLOBs" >
+    update message
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      htop = #{htop,jdbcType=SMALLINT},
+      rtop = #{rtop,jdbcType=SMALLINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      retime = #{retime,jdbcType=INTEGER},
+      checkinfo = #{checkinfo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR},
+      recont = #{recont,jdbcType=LONGVARCHAR}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Message" >
+    update message
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      htop = #{htop,jdbcType=SMALLINT},
+      rtop = #{rtop,jdbcType=SMALLINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      retime = #{retime,jdbcType=INTEGER},
+      checkinfo = #{checkinfo,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+</mapper>

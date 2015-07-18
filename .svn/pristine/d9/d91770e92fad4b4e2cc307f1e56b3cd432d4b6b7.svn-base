@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.AgencyMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Agency" >
+    <id column="agency_id" property="agencyId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="agency_type_id" property="agencyTypeId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.AgencyWithBLOBs" extends="BaseResultMap" >
+    <result column="picarr" property="picarr" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    agency_id, area_id, user_id, agency_type_id, province_id, city_id, title, price, 
+    create_time, contact
+  </sql>
+  <sql id="Blob_Column_List" >
+    picarr, content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from agency
+    where agency_id = #{agencyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agency
+    where agency_id = #{agencyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="agencyId" parameterType="com.youxuan.eu.model.AgencyWithBLOBs" >
+    insert into agency (agency_id, area_id, user_id, 
+      agency_type_id, province_id, city_id, 
+      title, price, create_time, 
+      contact, picarr, content
+      )
+    values (#{agencyId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{agencyTypeId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, 
+      #{contact,jdbcType=VARCHAR}, #{picarr,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.AgencyWithBLOBs" >
+    insert into agency
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agencyId != null" >
+        agency_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="agencyTypeId != null" >
+        agency_type_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="picarr != null" >
+        picarr,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agencyId != null" >
+        #{agencyId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="agencyTypeId != null" >
+        #{agencyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="picarr != null" >
+        #{picarr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.AgencyWithBLOBs" >
+    update agency
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="agencyTypeId != null" >
+        agency_type_id = #{agencyTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="picarr != null" >
+        picarr = #{picarr,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where agency_id = #{agencyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.AgencyWithBLOBs" >
+    update agency
+    set area_id = #{areaId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      agency_type_id = #{agencyTypeId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      contact = #{contact,jdbcType=VARCHAR},
+      picarr = #{picarr,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where agency_id = #{agencyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Agency" >
+    update agency
+    set area_id = #{areaId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      agency_type_id = #{agencyTypeId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      contact = #{contact,jdbcType=VARCHAR}
+    where agency_id = #{agencyId,jdbcType=INTEGER}
+  </update>
+</mapper>

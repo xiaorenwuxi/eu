@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.House_groupMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.House_group" >
+    <id column="house_group_id" property="houseGroupId" jdbcType="INTEGER" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    house_group_id, group_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_group
+    where house_group_id = #{houseGroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from house_group
+    where house_group_id = #{houseGroupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="houseGroupId" parameterType="com.youxuan.eu.model.House_group" >
+    insert into house_group (house_group_id, group_name, create_time
+      )
+    values (#{houseGroupId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.House_group" >
+    insert into house_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="houseGroupId != null" >
+        house_group_id,
+      </if>
+      <if test="groupName != null" >
+        group_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="houseGroupId != null" >
+        #{houseGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null" >
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.House_group" >
+    update house_group
+    <set >
+      <if test="groupName != null" >
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where house_group_id = #{houseGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.House_group" >
+    update house_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where house_group_id = #{houseGroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

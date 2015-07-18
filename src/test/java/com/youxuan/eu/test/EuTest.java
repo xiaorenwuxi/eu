@@ -1,0 +1,31 @@
+package com.youxuan.eu.test;
+
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.youxuan.eu.mapper.AdminMapper;
+import com.youxuan.eu.model.Admin;
+import com.youxuan.eu.util.MD5;
+
+
+
+public class EuTest {
+	
+	@Test
+	public void md(){
+		@SuppressWarnings("resource")
+		ApplicationContext applicationContext=new ClassPathXmlApplicationContext(new String[]{"classpath:conf/spring-mybatis.xml","classpath:conf/spring-mvc.xml","classpath:conf/spring.xml"});
+		AdminMapper adminMapper = applicationContext.getBean(AdminMapper.class);
+		Admin admin = new Admin();
+		
+		MD5 jiami =new MD5();
+		@SuppressWarnings("static-access")
+		String aString =jiami.md5("123");
+		admin.setPassword(aString);
+		admin.setAdminId(2);
+		admin.setUsername("刘德华");
+		adminMapper.insert(admin);
+	}
+	
+}
