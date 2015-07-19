@@ -1,0 +1,86 @@
+﻿.container {
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.header_logo {
+    margin: 20px;
+    text-align: center;
+}
+
+.button {
+    margin-bottom: 50px;
+}
+
+    .button div {
+        width: 100px;
+        height: 25px;
+        border:1px solid #797979;
+        line-height:25px;
+        text-align:center;
+        margin-bottom:10px;
+        background:#dfdfdf;
+            
+    }
+    .button div a{
+        color:#000;
+        text-decoration:none;
+    }
+
+.login_con {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.login_con_right {
+    border: 1px solid #ccc;
+    height: 378px;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+    .login_con_right div {
+        text-align: center;
+        width: 400px;
+        margin: 15px auto;
+    }
+
+    .login_con_right a{
+        text-decoration:none;
+    }
+
+    .login_con_right label {
+        display: block;
+        margin-bottom: 5px;
+        text-align: left;
+        margin-left: 35px;
+    }
+
+    .login_con_right div input {
+        width: 320px;
+        height: 32px;
+        padding-left: 5px;
+    }
+
+    .login_con_right div button {
+        width: 320px;
+        height: 32px;
+    }
+
+    .login_con_right div.Cooperation {
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        margin: 0px;
+    }

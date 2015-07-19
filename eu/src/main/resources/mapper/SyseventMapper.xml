@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.SyseventMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Sysevent" >
+    <id column="sysevent_id" property="sysevent_id" jdbcType="INTEGER" />
+    <result column="uname" property="uname" jdbcType="VARCHAR" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="create_time" property="create_time" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="findAll" resultMap="BaseResultMap">
+		select * from sysevent
+	</select>
+  <sql id="Base_Column_List" >
+    sysevent_id, uname, action, create_time, ip
+  </sql>
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sysevent
+    where sysevent_id = #{syseventId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sysevent
+    where sysevent_id = #{syseventId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="syseventId" parameterType="com.youxuan.eu.model.Sysevent" >
+    insert into sysevent (sysevent_id, uname, action, 
+      posttime, ip)
+    values (#{syseventId,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{action,jdbcType=VARCHAR}, 
+      #{posttime,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Sysevent" >
+    insert into sysevent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syseventId != null" >
+        sysevent_id,
+      </if>
+      <if test="uname != null" >
+        uname,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="posttime != null" >
+        posttime,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syseventId != null" >
+        #{syseventId,jdbcType=INTEGER},
+      </if>
+      <if test="uname != null" >
+        #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        #{posttime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Sysevent" >
+    update sysevent
+    <set >
+      <if test="uname != null" >
+        uname = #{uname,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="posttime != null" >
+        posttime = #{posttime,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sysevent_id = #{syseventId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Sysevent" >
+    update sysevent
+    set uname = #{uname,jdbcType=VARCHAR},
+      action = #{action,jdbcType=VARCHAR},
+      posttime = #{posttime,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR}
+    where sysevent_id = #{syseventId,jdbcType=INTEGER}
+  </update>
+</mapper>

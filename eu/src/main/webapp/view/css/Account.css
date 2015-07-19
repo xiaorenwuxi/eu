@@ -1,0 +1,29 @@
+﻿.account{
+    margin:20px;
+    width:100%;
+}
+
+.account_hader{
+    background:#e4e4e4;
+}
+.common{
+    height:30px;
+    line-height:30px;
+    padding-left:20px;
+    margin-top:20px;
+    color:#fff;
+}
+.account_top{
+    background:#008fa3;
+}
+.account_middle{
+    background:#00920c;
+}
+.account_bottom{
+    background:#9e00a5;
+}
+
+.con{
+    height:200px;
+    background:#ebebeb;
+}

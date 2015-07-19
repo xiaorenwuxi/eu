@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.youxuan.eu.model.User">
+		<id column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="province_id" property="provinceId" jdbcType="INTEGER" />
+		<result column="city_id" property="cityId" jdbcType="INTEGER" />
+		<result column="usergroup_id" property="usergroupId" jdbcType="INTEGER" />
+		<result column="area_id" property="areaId" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="question" property="question" jdbcType="VARCHAR" />
+		<result column="answer" property="answer" jdbcType="VARCHAR" />
+		<result column="cnname" property="cnname" jdbcType="VARCHAR" />
+		<result column="enname" property="enname" jdbcType="VARCHAR" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="birthtype" property="birthtype" jdbcType="INTEGER" />
+		<result column="birth_year" property="birthYear" jdbcType="VARCHAR" />
+		<result column="birth_month" property="birthMonth" jdbcType="VARCHAR" />
+		<result column="birth_day" property="birthDay" jdbcType="VARCHAR" />
+		<result column="astro" property="astro" jdbcType="VARCHAR" />
+		<result column="bloodtype" property="bloodtype" jdbcType="VARCHAR" />
+		<result column="trade" property="trade" jdbcType="VARCHAR" />
+		<result column="cardtype" property="cardtype" jdbcType="INTEGER" />
+		<result column="cardnum" property="cardnum" jdbcType="VARCHAR" />
+		<result column="cardpic" property="cardpic" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="qqnum" property="qqnum" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="zipcode" property="zipcode" jdbcType="VARCHAR" />
+		<result column="enteruser" property="enteruser" jdbcType="INTEGER" />
+		<result column="regtime" property="regtime" jdbcType="INTEGER" />
+		<result column="regip" property="regip" jdbcType="VARCHAR" />
+		<result column="logintime" property="logintime" jdbcType="INTEGER" />
+		<result column="loginip" property="loginip" jdbcType="VARCHAR" />
+		<result column="qqid" property="qqid" jdbcType="VARCHAR" />
+		<result column="weiboid" property="weiboid" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.User"
+		extends="BaseResultMap">
+		<result column="intro" property="intro" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, province_id, city_id, usergroup_id, area_id,
+		user_name, password,
+		question,
+		answer, cnname, enname, avatar, sex,
+		birthtype, birth_year, birth_month,
+		birth_day,
+		astro, bloodtype, trade,
+		cardtype, cardnum, cardpic, email, qqnum, mobile,
+		address,
+		zipcode,
+		enteruser, regtime, regip, logintime, loginip, qqid, weiboid
+	</sql>
+	<sql id="Blob_Column_List">
+		intro
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectallcol" resultMap="ResultMapWithBLOBs"
+		parameterType="com.youxuan.eu.model.User">
+		select *from user where user_name=#{userName} or email=#{email} or mobile=#{mobile}
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where user_id = #{userId,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="userId" parameterType="com.youxuan.eu.model.User">
+		insert into user (user_id,
+		province_id, city_id,
+		usergroup_id, area_id, user_name,
+		password,
+		question, answer,
+		cnname, enname, avatar,
+		sex, birthtype, birth_year,
+		birth_month, birth_day, astro,
+		bloodtype, trade, cardtype,
+		cardnum,
+		cardpic, email,
+		qqnum, mobile, address,
+		zipcode, enteruser, regtime,
+		regip, logintime, loginip,
+		qqid, weiboid, intro
+		)
+		values
+		(#{userId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER},
+		#{cityId,jdbcType=INTEGER},
+		#{usergroupId,jdbcType=INTEGER},
+		#{areaId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
+		#{answer,jdbcType=VARCHAR},
+		#{cnname,jdbcType=VARCHAR},
+		#{enname,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR},
+		#{sex,jdbcType=INTEGER}, #{birthtype,jdbcType=INTEGER},
+		#{birthYear,jdbcType=VARCHAR},
+		#{birthMonth,jdbcType=VARCHAR},
+		#{birthDay,jdbcType=VARCHAR}, #{astro,jdbcType=VARCHAR},
+		#{bloodtype,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR},
+		#{cardtype,jdbcType=INTEGER},
+		#{cardnum,jdbcType=VARCHAR},
+		#{cardpic,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{qqnum,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{zipcode,jdbcType=VARCHAR},
+		#{enteruser,jdbcType=INTEGER}, #{regtime,jdbcType=INTEGER},
+		#{regip,jdbcType=VARCHAR}, #{logintime,jdbcType=INTEGER},
+		#{loginip,jdbcType=VARCHAR},
+		#{qqid,jdbcType=VARCHAR},
+		#{weiboid,jdbcType=VARCHAR}, #{intro,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.youxuan.eu.model.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="provinceId != null">
+				province_id,
+			</if>
+			<if test="cityId != null">
+				city_id,
+			</if>
+			<if test="usergroupId != null">
+				usergroup_id,
+			</if>
+			<if test="areaId != null">
+				area_id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="question != null">
+				question,
+			</if>
+			<if test="answer != null">
+				answer,
+			</if>
+			<if test="cnname != null">
+				cnname,
+			</if>
+			<if test="enname != null">
+				enname,
+			</if>
+			<if test="avatar != null">
+				avatar,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthtype != null">
+				birthtype,
+			</if>
+			<if test="birthYear != null">
+				birth_year,
+			</if>
+			<if test="birthMonth != null">
+				birth_month,
+			</if>
+			<if test="birthDay != null">
+				birth_day,
+			</if>
+			<if test="astro != null">
+				astro,
+			</if>
+			<if test="bloodtype != null">
+				bloodtype,
+			</if>
+			<if test="trade != null">
+				trade,
+			</if>
+			<if test="cardtype != null">
+				cardtype,
+			</if>
+			<if test="cardnum != null">
+				cardnum,
+			</if>
+			<if test="cardpic != null">
+				cardpic,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="qqnum != null">
+				qqnum,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="zipcode != null">
+				zipcode,
+			</if>
+			<if test="enteruser != null">
+				enteruser,
+			</if>
+			<if test="regtime != null">
+				regtime,
+			</if>
+			<if test="regip != null">
+				regip,
+			</if>
+			<if test="logintime != null">
+				logintime,
+			</if>
+			<if test="loginip != null">
+				loginip,
+			</if>
+			<if test="qqid != null">
+				qqid,
+			</if>
+			<if test="weiboid != null">
+				weiboid,
+			</if>
+			<if test="intro != null">
+				intro,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="provinceId != null">
+				#{provinceId,jdbcType=INTEGER},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=INTEGER},
+			</if>
+			<if test="usergroupId != null">
+				#{usergroupId,jdbcType=INTEGER},
+			</if>
+			<if test="areaId != null">
+				#{areaId,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="question != null">
+				#{question,jdbcType=VARCHAR},
+			</if>
+			<if test="answer != null">
+				#{answer,jdbcType=VARCHAR},
+			</if>
+			<if test="cnname != null">
+				#{cnname,jdbcType=VARCHAR},
+			</if>
+			<if test="enname != null">
+				#{enname,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				#{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthtype != null">
+				#{birthtype,jdbcType=INTEGER},
+			</if>
+			<if test="birthYear != null">
+				#{birthYear,jdbcType=VARCHAR},
+			</if>
+			<if test="birthMonth != null">
+				#{birthMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDay != null">
+				#{birthDay,jdbcType=VARCHAR},
+			</if>
+			<if test="astro != null">
+				#{astro,jdbcType=VARCHAR},
+			</if>
+			<if test="bloodtype != null">
+				#{bloodtype,jdbcType=VARCHAR},
+			</if>
+			<if test="trade != null">
+				#{trade,jdbcType=VARCHAR},
+			</if>
+			<if test="cardtype != null">
+				#{cardtype,jdbcType=INTEGER},
+			</if>
+			<if test="cardnum != null">
+				#{cardnum,jdbcType=VARCHAR},
+			</if>
+			<if test="cardpic != null">
+				#{cardpic,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="qqnum != null">
+				#{qqnum,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zipcode != null">
+				#{zipcode,jdbcType=VARCHAR},
+			</if>
+			<if test="enteruser != null">
+				#{enteruser,jdbcType=INTEGER},
+			</if>
+			<if test="regtime != null">
+				#{regtime,jdbcType=INTEGER},
+			</if>
+			<if test="regip != null">
+				#{regip,jdbcType=VARCHAR},
+			</if>
+			<if test="logintime != null">
+				#{logintime,jdbcType=INTEGER},
+			</if>
+			<if test="loginip != null">
+				#{loginip,jdbcType=VARCHAR},
+			</if>
+			<if test="qqid != null">
+				#{qqid,jdbcType=VARCHAR},
+			</if>
+			<if test="weiboid != null">
+				#{weiboid,jdbcType=VARCHAR},
+			</if>
+			<if test="intro != null">
+				#{intro,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.User">
+		update user
+		<set>
+			<if test="provinceId != null">
+				province_id = #{provinceId,jdbcType=INTEGER},
+			</if>
+			<if test="cityId != null">
+				city_id = #{cityId,jdbcType=INTEGER},
+			</if>
+			<if test="usergroupId != null">
+				usergroup_id = #{usergroupId,jdbcType=INTEGER},
+			</if>
+			<if test="areaId != null">
+				area_id = #{areaId,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="question != null">
+				question = #{question,jdbcType=VARCHAR},
+			</if>
+			<if test="answer != null">
+				answer = #{answer,jdbcType=VARCHAR},
+			</if>
+			<if test="cnname != null">
+				cnname = #{cnname,jdbcType=VARCHAR},
+			</if>
+			<if test="enname != null">
+				enname = #{enname,jdbcType=VARCHAR},
+			</if>
+			<if test="avatar != null">
+				avatar = #{avatar,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthtype != null">
+				birthtype = #{birthtype,jdbcType=INTEGER},
+			</if>
+			<if test="birthYear != null">
+				birth_year = #{birthYear,jdbcType=VARCHAR},
+			</if>
+			<if test="birthMonth != null">
+				birth_month = #{birthMonth,jdbcType=VARCHAR},
+			</if>
+			<if test="birthDay != null">
+				birth_day = #{birthDay,jdbcType=VARCHAR},
+			</if>
+			<if test="astro != null">
+				astro = #{astro,jdbcType=VARCHAR},
+			</if>
+			<if test="bloodtype != null">
+				bloodtype = #{bloodtype,jdbcType=VARCHAR},
+			</if>
+			<if test="trade != null">
+				trade = #{trade,jdbcType=VARCHAR},
+			</if>
+			<if test="cardtype != null">
+				cardtype = #{cardtype,jdbcType=INTEGER},
+			</if>
+			<if test="cardnum != null">
+				cardnum = #{cardnum,jdbcType=VARCHAR},
+			</if>
+			<if test="cardpic != null">
+				cardpic = #{cardpic,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="qqnum != null">
+				qqnum = #{qqnum,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zipcode != null">
+				zipcode = #{zipcode,jdbcType=VARCHAR},
+			</if>
+			<if test="enteruser != null">
+				enteruser = #{enteruser,jdbcType=INTEGER},
+			</if>
+			<if test="regtime != null">
+				regtime = #{regtime,jdbcType=INTEGER},
+			</if>
+			<if test="regip != null">
+				regip = #{regip,jdbcType=VARCHAR},
+			</if>
+			<if test="logintime != null">
+				logintime = #{logintime,jdbcType=INTEGER},
+			</if>
+			<if test="loginip != null">
+				loginip = #{loginip,jdbcType=VARCHAR},
+			</if>
+			<if test="qqid != null">
+				qqid = #{qqid,jdbcType=VARCHAR},
+			</if>
+			<if test="weiboid != null">
+				weiboid = #{weiboid,jdbcType=VARCHAR},
+			</if>
+			<if test="intro != null">
+				intro = #{intro,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.User">
+		update
+		user
+		set province_id = #{provinceId,jdbcType=INTEGER},
+		city_id =
+		#{cityId,jdbcType=INTEGER},
+		usergroup_id =
+		#{usergroupId,jdbcType=INTEGER},
+		area_id = #{areaId,jdbcType=INTEGER},
+		user_name = #{userName,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		question = #{question,jdbcType=VARCHAR},
+		answer = #{answer,jdbcType=VARCHAR},
+		cnname =
+		#{cnname,jdbcType=VARCHAR},
+		enname = #{enname,jdbcType=VARCHAR},
+		avatar
+		= #{avatar,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		birthtype =
+		#{birthtype,jdbcType=INTEGER},
+		birth_year =
+		#{birthYear,jdbcType=VARCHAR},
+		birth_month =
+		#{birthMonth,jdbcType=VARCHAR},
+		birth_day =
+		#{birthDay,jdbcType=VARCHAR},
+		astro = #{astro,jdbcType=VARCHAR},
+		bloodtype = #{bloodtype,jdbcType=VARCHAR},
+		trade =
+		#{trade,jdbcType=VARCHAR},
+		cardtype = #{cardtype,jdbcType=INTEGER},
+		cardnum = #{cardnum,jdbcType=VARCHAR},
+		cardpic =
+		#{cardpic,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		qqnum =
+		#{qqnum,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		address
+		= #{address,jdbcType=VARCHAR},
+		zipcode = #{zipcode,jdbcType=VARCHAR},
+		enteruser = #{enteruser,jdbcType=INTEGER},
+		regtime =
+		#{regtime,jdbcType=INTEGER},
+		regip = #{regip,jdbcType=VARCHAR},
+		logintime = #{logintime,jdbcType=INTEGER},
+		loginip =
+		#{loginip,jdbcType=VARCHAR},
+		qqid = #{qqid,jdbcType=VARCHAR},
+		weiboid =
+		#{weiboid,jdbcType=VARCHAR},
+		intro = #{intro,jdbcType=LONGVARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.User">
+		update user
+		set
+		province_id = #{provinceId,jdbcType=INTEGER},
+		city_id =
+		#{cityId,jdbcType=INTEGER},
+		usergroup_id =
+		#{usergroupId,jdbcType=INTEGER},
+		area_id = #{areaId,jdbcType=INTEGER},
+		user_name = #{userName,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
+		question = #{question,jdbcType=VARCHAR},
+		answer = #{answer,jdbcType=VARCHAR},
+		cnname =
+		#{cnname,jdbcType=VARCHAR},
+		enname = #{enname,jdbcType=VARCHAR},
+		avatar
+		= #{avatar,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=INTEGER},
+		birthtype =
+		#{birthtype,jdbcType=INTEGER},
+		birth_year =
+		#{birthYear,jdbcType=VARCHAR},
+		birth_month =
+		#{birthMonth,jdbcType=VARCHAR},
+		birth_day =
+		#{birthDay,jdbcType=VARCHAR},
+		astro = #{astro,jdbcType=VARCHAR},
+		bloodtype = #{bloodtype,jdbcType=VARCHAR},
+		trade =
+		#{trade,jdbcType=VARCHAR},
+		cardtype = #{cardtype,jdbcType=INTEGER},
+		cardnum = #{cardnum,jdbcType=VARCHAR},
+		cardpic =
+		#{cardpic,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		qqnum =
+		#{qqnum,jdbcType=VARCHAR},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		address
+		= #{address,jdbcType=VARCHAR},
+		zipcode = #{zipcode,jdbcType=VARCHAR},
+		enteruser = #{enteruser,jdbcType=INTEGER},
+		regtime =
+		#{regtime,jdbcType=INTEGER},
+		regip = #{regip,jdbcType=VARCHAR},
+		logintime = #{logintime,jdbcType=INTEGER},
+		loginip =
+		#{loginip,jdbcType=VARCHAR},
+		qqid = #{qqid,jdbcType=VARCHAR},
+		weiboid =
+		#{weiboid,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=INTEGER}
+	</update>
+</mapper>

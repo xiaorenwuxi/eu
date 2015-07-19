@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.UsergroupMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Usergroup" >
+    <id column="usergroup_id" property="usergroupId" jdbcType="INTEGER" />
+    <result column="usergroup_name" property="usergroupName" jdbcType="VARCHAR" />
+    <result column="color" property="color" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    usergroup_id, usergroup_name, color
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usergroup
+    where usergroup_id = #{usergroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usergroup
+    where usergroup_id = #{usergroupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="usergroupId" parameterType="com.youxuan.eu.model.Usergroup" >
+    insert into usergroup (usergroup_id, usergroup_name, color
+      )
+    values (#{usergroupId,jdbcType=INTEGER}, #{usergroupName,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="usergroupId" parameterType="com.youxuan.eu.model.Usergroup" >
+    insert into usergroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="usergroupId != null" >
+        usergroup_id,
+      </if>
+      <if test="usergroupName != null" >
+        usergroup_name,
+      </if>
+      <if test="color != null" >
+        color,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="usergroupId != null" >
+        #{usergroupId,jdbcType=INTEGER},
+      </if>
+      <if test="usergroupName != null" >
+        #{usergroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        #{color,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Usergroup" >
+    update usergroup
+    <set >
+      <if test="usergroupName != null" >
+        usergroup_name = #{usergroupName,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where usergroup_id = #{usergroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Usergroup" >
+    update usergroup
+    set usergroup_name = #{usergroupName,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR}
+    where usergroup_id = #{usergroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

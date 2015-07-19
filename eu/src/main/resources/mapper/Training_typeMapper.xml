@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.Training_typeMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Training_type" >
+    <id column="training_type_id" property="trainingTypeId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    training_type_id, title, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from training_type
+    where training_type_id = #{trainingTypeId,jdbcType=INTEGER}
+  </select>
+  
+   <select id="getallslectform" resultMap="BaseResultMap">
+SELECT
+training_type.title,
+training_type.training_type_id
+FROM
+training_type
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from training_type
+    where training_type_id = #{trainingTypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="trainingTypeId" parameterType="com.youxuan.eu.model.Training_type" >
+    insert into training_type (training_type_id, title, create_time
+      )
+    values (#{trainingTypeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Training_type" >
+    insert into training_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainingTypeId != null" >
+        training_type_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainingTypeId != null" >
+        #{trainingTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Training_type" >
+    update training_type
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where training_type_id = #{trainingTypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Training_type" >
+    update training_type
+    set title = #{title,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where training_type_id = #{trainingTypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

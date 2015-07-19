@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Equipment" >
+    <id column="equipment_id" property="equipmentId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="equipment_type_id" property="equipmentTypeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="abrasion" property="abrasion" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Equipment" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    equipment_id, province_id, equipment_type_id, user_id, area_id, city_id, title, abrasion, 
+    price, contact, create_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from equipment
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from equipment
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="equipmentId" parameterType="com.youxuan.eu.model.Equipment" >
+    insert into equipment (equipment_id, province_id, equipment_type_id, 
+      user_id, area_id, city_id, 
+      title, abrasion, price, 
+      contact, create_time, content
+      )
+    values (#{equipmentId,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{equipmentTypeId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{abrasion,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Equipment" >
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="equipmentId != null" >
+        equipment_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="equipmentTypeId != null" >
+        equipment_type_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="abrasion != null" >
+        abrasion,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentTypeId != null" >
+        #{equipmentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abrasion != null" >
+        #{abrasion,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Equipment" >
+    update equipment
+    <set >
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentTypeId != null" >
+        equipment_type_id = #{equipmentTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="abrasion != null" >
+        abrasion = #{abrasion,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Equipment" >
+    update equipment
+    set province_id = #{provinceId,jdbcType=INTEGER},
+      equipment_type_id = #{equipmentTypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      abrasion = #{abrasion,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Equipment" >
+    update equipment
+    set province_id = #{provinceId,jdbcType=INTEGER},
+      equipment_type_id = #{equipmentTypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      abrasion = #{abrasion,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where equipment_id = #{equipmentId,jdbcType=INTEGER}
+  </update>
+</mapper>

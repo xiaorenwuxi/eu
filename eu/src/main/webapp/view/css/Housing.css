@@ -1,0 +1,54 @@
+﻿.housing_header{
+    height:210px;
+    border:1px solid #ccc;
+    width:1000px;
+    margin-top:20px;
+}
+.housing_nav div{
+    margin-top:20px;
+}
+.housing_nav div.housing_nav_con{
+    border:1px solid #ccc;
+    margin-top:0px;
+}
+.housing_nav div label{
+    width:150px;
+    text-align:right;
+    margin-right:20px;
+}
+.housing_nav_title{
+    height:40px;
+    background:#ccc;
+    border:1px solid #ccc;
+}
+
+.tijiao input{
+    
+    border: 1px solid #696969;
+    height: 32px;
+    width: 120px;
+    background: #fff;
+    margin-left:110px;
+    margin-bottom:20px;
+}
+
+.housing_nav_title ul li{
+    float:left;
+    width:120px;
+    line-height:38px;
+    text-align:center;
+    border-right:1px solid #ccc;
+    background:#fff;
+        
+}
+
+.housing_nav div.housing_type{
+    border:1px solid #ccc;
+    height:50px;
+}
+.housing_type ul li{
+    margin-top:0px;
+    float:left;
+    width:105px;
+    line-height:50px;
+}

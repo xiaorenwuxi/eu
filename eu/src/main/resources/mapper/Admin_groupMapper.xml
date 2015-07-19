@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.Admin_groupMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Admin_group" >
+    <id column="admin_group_id" property="adminGroupId" jdbcType="INTEGER" />
+    <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+    <result column="checkinfo" property="checkinfo" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Admin_group" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    admin_group_id, groupname, checkinfo
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from admin_group
+    where admin_group_id = #{adminGroupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin_group
+    where admin_group_id = #{adminGroupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="adminGroupId" parameterType="com.youxuan.eu.model.Admin_group" >
+    insert into admin_group (admin_group_id, groupname, checkinfo, 
+      description)
+    values (#{adminGroupId,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR}, #{checkinfo,jdbcType=INTEGER}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Admin_group" >
+    insert into admin_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminGroupId != null" >
+        admin_group_id,
+      </if>
+      <if test="groupname != null" >
+        groupname,
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminGroupId != null" >
+        #{adminGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="checkinfo != null" >
+        #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Admin_group" >
+    update admin_group
+    <set >
+      <if test="groupname != null" >
+        groupname = #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="checkinfo != null" >
+        checkinfo = #{checkinfo,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where admin_group_id = #{adminGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Admin_group" >
+    update admin_group
+    set groupname = #{groupname,jdbcType=VARCHAR},
+      checkinfo = #{checkinfo,jdbcType=INTEGER},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where admin_group_id = #{adminGroupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Admin_group" >
+    update admin_group
+    set groupname = #{groupname,jdbcType=VARCHAR},
+      checkinfo = #{checkinfo,jdbcType=INTEGER}
+    where admin_group_id = #{adminGroupId,jdbcType=INTEGER}
+  </update>
+</mapper>

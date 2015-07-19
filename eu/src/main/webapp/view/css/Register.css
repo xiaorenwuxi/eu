@@ -1,0 +1,101 @@
+﻿.container {
+    width: 1200px;
+    
+    margin: 0 auto;
+    font-size: 12px;
+}
+
+.content {
+    width: 500px;
+    
+    margin: 0 auto;
+}
+
+
+.header_logo {
+    margin: 20px;
+    text-align: center;
+}
+
+.button {
+    margin-bottom: 50px;
+}
+
+.button div { 
+        width: 100px;
+        height: 25px;
+        border:1px solid #797979;
+        line-height:25px;
+        text-align:center;
+        margin-bottom:10px;
+        background:#dfdfdf;
+    }
+
+    .button div a{
+        color:#000;
+        text-decoration:none;
+    }
+
+.options button {
+    width: 50%;
+    height: 32px;
+    border: 0px;
+    background-image: url(../images/u6.png);
+}
+
+.click {
+    background-image: url(../images/u4.png) !important;
+}
+
+.email {
+    margin-left: -8px;
+}
+
+.register_con {
+    padding-top: 10px;
+    border: 1px solid #797979;
+    width: 496px;
+}
+
+    .register_con div {
+        width: 490px;
+        margin: 20px auto;
+    }
+
+        .register_con div label {
+            width: 120px;
+            height: 32px;
+            text-align: right;
+            display: inline-block;
+        }
+
+.checkbox {
+    vertical-align: middle;
+    margin-left: 125px;
+}
+
+.register_con div input {
+    width: 320px;
+    height: 32px;
+    padding-left: 5px;
+}
+
+.register_con div.register_button {
+    width: 320px;
+    margin-top: 20px;
+    margin-left: 125px;
+}
+
+.register_button button {
+    width: 100%;
+    height: 32px;
+}
+
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

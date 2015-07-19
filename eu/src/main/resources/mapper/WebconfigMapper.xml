@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.WebconfigMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Webconfig" >
+    <id column="webconfig_id" property="webconfigId" jdbcType="INTEGER" />
+    <result column="varname" property="varname" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Webconfig" extends="BaseResultMap" >
+    <result column="varvalue" property="varvalue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    webconfig_id, varname
+  </sql>
+  <sql id="Blob_Column_List" >
+    varvalue
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from webconfig
+    where webconfig_id = #{webconfigId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from webconfig
+    where webconfig_id = #{webconfigId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="webconfigId" parameterType="com.youxuan.eu.model.Webconfig" >
+    insert into webconfig (webconfig_id, varname, varvalue
+      )
+    values (#{webconfigId,jdbcType=INTEGER}, #{varname,jdbcType=VARCHAR}, #{varvalue,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Webconfig" >
+    insert into webconfig
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="webconfigId != null" >
+        webconfig_id,
+      </if>
+      <if test="varname != null" >
+        varname,
+      </if>
+      <if test="varvalue != null" >
+        varvalue,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="webconfigId != null" >
+        #{webconfigId,jdbcType=INTEGER},
+      </if>
+      <if test="varname != null" >
+        #{varname,jdbcType=VARCHAR},
+      </if>
+      <if test="varvalue != null" >
+        #{varvalue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Webconfig" >
+    update webconfig
+    <set >
+      <if test="varname != null" >
+        varname = #{varname,jdbcType=VARCHAR},
+      </if>
+      <if test="varvalue != null" >
+        varvalue = #{varvalue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where webconfig_id = #{webconfigId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Webconfig" >
+    update webconfig
+    set varname = #{varname,jdbcType=VARCHAR},
+      varvalue = #{varvalue,jdbcType=LONGVARCHAR}
+    where webconfig_id = #{webconfigId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Webconfig" >
+    update webconfig
+    set varname = #{varname,jdbcType=VARCHAR}
+    where webconfig_id = #{webconfigId,jdbcType=INTEGER}
+  </update>
+</mapper>

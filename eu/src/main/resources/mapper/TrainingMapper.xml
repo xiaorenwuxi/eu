@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.TrainingMapper" >
+  <resultMap id="BaseResultMap" type="com.youxuan.eu.model.Training" >
+    <id column="training_id" property="trainingId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="training_type_id" property="trainingTypeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="titile" property="titile" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="VARCHAR" />
+    <result column="telphone" property="telphone" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="training_picture" property="trainingPicture" jdbcType="VARCHAR" />
+    <result column="detailed_address" property="detailedAddress" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.youxuan.eu.model.Training" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    training_id, area_id, city_id, province_id, training_type_id, user_id, titile, price, 
+    telphone, contact, create_time, training_picture, detailed_address
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from training
+    where training_id = #{trainingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from training
+    where training_id = #{trainingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.youxuan.eu.model.Training" useGeneratedKeys="true" keyProperty="trainingId" >
+    insert into training (training_id, area_id, city_id, 
+      province_id, training_type_id, user_id, 
+      titile, price, telphone, 
+      contact, create_time, training_picture, 
+      detailed_address, content)
+    values (#{trainingId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, 
+      #{provinceId,jdbcType=INTEGER}, #{trainingTypeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{titile,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, #{telphone,jdbcType=VARCHAR}, 
+      #{contact,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{trainingPicture,jdbcType=VARCHAR}, 
+      #{detailedAddress,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.youxuan.eu.model.Training" >
+    insert into training
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="trainingId != null" >
+        training_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="trainingTypeId != null" >
+        training_type_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="titile != null" >
+        titile,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="telphone != null" >
+        telphone,
+      </if>
+      <if test="contact != null" >
+        contact,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="trainingPicture != null" >
+        training_picture,
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="trainingId != null" >
+        #{trainingId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="trainingTypeId != null" >
+        #{trainingTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="titile != null" >
+        #{titile,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="trainingPicture != null" >
+        #{trainingPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        #{detailedAddress,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Training" >
+    update training
+    <set >
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="trainingTypeId != null" >
+        training_type_id = #{trainingTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="titile != null" >
+        titile = #{titile,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="telphone != null" >
+        telphone = #{telphone,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null" >
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="trainingPicture != null" >
+        training_picture = #{trainingPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedAddress != null" >
+        detailed_address = #{detailedAddress,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where training_id = #{trainingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.youxuan.eu.model.Training" >
+    update training
+    set area_id = #{areaId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      training_type_id = #{trainingTypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      titile = #{titile,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      training_picture = #{trainingPicture,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=CHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where training_id = #{trainingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Training" >
+    update training
+    set area_id = #{areaId,jdbcType=INTEGER},
+      city_id = #{cityId,jdbcType=INTEGER},
+      province_id = #{provinceId,jdbcType=INTEGER},
+      training_type_id = #{trainingTypeId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      titile = #{titile,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      telphone = #{telphone,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      training_picture = #{trainingPicture,jdbcType=VARCHAR},
+      detailed_address = #{detailedAddress,jdbcType=CHAR}
+    where training_id = #{trainingId,jdbcType=INTEGER}
+  </update>
+</mapper>

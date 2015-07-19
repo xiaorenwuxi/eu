@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.youxuan.eu.mapper.AdtypeMapper">
+	<resultMap id="BaseResultMap" type="com.youxuan.eu.model.Adtype">
+		<id column="adtype_id" property="adtypeId" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="width" property="width" jdbcType="INTEGER" />
+		<result column="height" property="height" jdbcType="INTEGER" />
+		<result column="checkinfo" property="checkinfo" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		adtype_id, title, width, height, checkinfo
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from adtype
+		where adtype_id = #{adtypeId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from adtype
+		where adtype_id = #{adtypeId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="adtypeId"
+		parameterType="com.youxuan.eu.model.Adtype">
+		insert into adtype (adtype_id, title, width,
+		height, checkinfo)
+		values (#{adtypeId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{width,jdbcType=INTEGER},
+		#{height,jdbcType=INTEGER}, #{checkinfo,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.youxuan.eu.model.Adtype">
+		insert into adtype
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="adtypeId != null">
+				adtype_id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="width != null">
+				width,
+			</if>
+			<if test="height != null">
+				height,
+			</if>
+			<if test="checkinfo != null">
+				checkinfo,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="adtypeId != null">
+				#{adtypeId,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				#{width,jdbcType=INTEGER},
+			</if>
+			<if test="height != null">
+				#{height,jdbcType=INTEGER},
+			</if>
+			<if test="checkinfo != null">
+				#{checkinfo,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.youxuan.eu.model.Adtype">
+		update adtype
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="width != null">
+				width = #{width,jdbcType=INTEGER},
+			</if>
+			<if test="height != null">
+				height = #{height,jdbcType=INTEGER},
+			</if>
+			<if test="checkinfo != null">
+				checkinfo = #{checkinfo,jdbcType=INTEGER},
+			</if>
+		</set>
+		where adtype_id = #{adtypeId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.youxuan.eu.model.Adtype">
+		update adtype
+		set title = #{title,jdbcType=VARCHAR},
+		width = #{width,jdbcType=INTEGER},
+		height = #{height,jdbcType=INTEGER},
+		checkinfo = #{checkinfo,jdbcType=INTEGER}
+		where adtype_id = #{adtypeId,jdbcType=INTEGER}
+	</update>
+
+</mapper>
