@@ -1,0 +1,63 @@
+package com.youxuan.eu.model;
+
+import java.util.ArrayList;
+
+public class Adtype_Detailed {
+	private ArrayList<Admanage> adtypes;
+    private int adtypeId;
+	private String title;
+
+	private Integer width;
+
+	private Integer height;
+
+	private Integer checkinfo;
+
+	public int getAdtypeId() {
+		return adtypeId;
+	}
+
+	public void setAdtypeId(int adtypeId) {
+		this.adtypeId = adtypeId;
+	}
+
+	public ArrayList<Admanage> getAdtypes() {
+		return adtypes;
+	}
+
+	public void setAdtypes(ArrayList<Admanage> adtypes) {
+		this.adtypes = adtypes;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title == null ? null : title.trim();
+	}
+
+	public Integer getWidth() {
+		return width;
+	}
+
+	public void setWidth(Integer width) {
+		this.width = width;
+	}
+
+	public Integer getHeight() {
+		return height;
+	}
+
+	public void setHeight(Integer height) {
+		this.height = height;
+	}
+
+	public Integer getCheckinfo() {
+		return checkinfo;
+	}
+
+	public void setCheckinfo(Integer checkinfo) {
+		this.checkinfo = checkinfo;
+	}
+}

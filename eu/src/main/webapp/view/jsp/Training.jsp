@@ -40,7 +40,7 @@ System.out.println(basePath);
 <body>
 	<div class="container">
 		<div class="header">
-			<div class="title">
+			<div class="title" id="backMain"> 
 				<span>e创中心</span>
 			</div>
 		</div>
@@ -136,13 +136,13 @@ System.out.println(basePath);
 	});
 	
 	
-	 $(function () {
+		 $(function () {
 /**
 选择城市
 **/
-	 showLocation();
-         }
-    );
+	 	showLocation();
+        			 }
+   				 );
 
 	
 </script>

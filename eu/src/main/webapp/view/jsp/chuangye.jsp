@@ -8,26 +8,23 @@ String projectpath=basePath + "view";
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<base href="<%=basePath%>">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link href="<%=projectpath %>/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="<%=projectpath %>/css/Eworks.css" rel="stylesheet" />
+    <link href="<%=projectpath%>/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=projectpath%>/css/Eworks.css" rel="stylesheet" />
 
 
 
-    <script src="<%=projectpath %>/js/jquery-1.8.3.min.js"></script>
-    <script src="<%=projectpath %>/js/jquery-ui.min.js"></script>
-	<script src="<%=projectpath %>/js/jquery-ui.js"></script>
-	<script src="<%=projectpath %>/js/location.js"></script>
-	<script src="<%=projectpath %>/js/area.js"></script>
-	<link href="<%=projectpath %>/control/css/zyUpload.css" rel="stylesheet" />
-    <link href="<%=projectpath %>/css/jquery-ui.min.css" rel="stylesheet" />
-    <link href="<%=projectpath %>/css/jquery-ui.css" rel="stylesheet" />
-     <link href="<%=projectpath %>/css/common.css" rel="stylesheet" />
-    <script src="<%=projectpath %>/control/js/zyUpload.js"></script>
-    <script src="<%=projectpath %>/js/demo.js"></script>
-    <script src="<%=projectpath %>/core/zyFile.js"></script>
-
+    <script src="<%=projectpath%>/js/jquery-1.8.3.min.js"></script>
+    <link href="<%=projectpath%>/control/css/zyUpload.css" rel="stylesheet" />
+    <script src="<%=projectpath%>/control/js/zyUpload.js"></script>
+    <script src="<%=projectpath%>/js/demo.js"></script>
+    <script src="<%=projectpath%>/core/zyFile.js"></script>
+    <script src="<%=projectpath%>/js/area.js"></script>
+	<script src="<%=projectpath%>/js/location.js"></script>
+	<script src="<%=projectpath%>/js/jquery-ui.js"></script>
+	 <link href="<%=projectpath%>/css/jquery-ui.css" rel="stylesheet" />
     <!--上传图片样式-->
     <style type="text/css">
         #preview_img {
@@ -55,7 +52,6 @@ String projectpath=basePath + "view";
 </head>
 <!--创业信息发布-->
 <body>
-	<form action="ec/submit.do" method="post" enctype="multipart/form-data">
     <div class="container">
 
         <div class="header">
@@ -68,15 +64,16 @@ String projectpath=basePath + "view";
             <div class="project" style="height:730px;">
                 <div class="left" style="width: 150px; height: 100%; padding: 20px 50px;">
                     <div id="preview_img">
-                        <img id="imghead" border=0 src="<%=projectpath %>/images/head_180.jpg" width="120" height="120" />
+                        <img id="imghead" border=0 src="<%=projectpath%>/images/head_180.jpg" width="120" height="120" />
                     </div>
-                        <div style=" margin-top:20px;padding-left:20px">
-                            <input type="button" value="上传图片" style="width:100px;height:25px;" />
-                            <input type="file" class="file" onchange="previewImage(this)" />
-                        </div>
+                    <div style=" margin-top:20px;padding-left:20px">
+                        <input type="button" value="上传图片" style="width:100px;height:25px;" />
+                        <input type="file" class="file" onchange="previewImage(this)" />
+                    </div>
 
                 </div>
                 <div class="left" style="width:840px;padding-left:30px;">
+
                     <div>
                         <label>项目名称：</label><input type="text" class="input" id="title"/>
                     </div>
@@ -93,6 +90,7 @@ String projectpath=basePath + "view";
                             </select>&nbsp;&nbsp;
                             <select id="loc_town">
                                 <option>选择区域</option>
+
                             </select>
                         </div>
                     </div>
@@ -103,7 +101,8 @@ String projectpath=basePath + "view";
                     </div>
                     <div>
                         <label>项目方向</label>
-                        <input type="text" class="input" id="prodirection"/>
+                        <input type="text" class="input" id="prodirection">
+                            <option></option>
                     </div>
                     <div>
                         <label>简述：</label>
@@ -118,92 +117,148 @@ String projectpath=basePath + "view";
             </div>
 
 
-                <div class="project" style="padding-left:170px;">
-                    <div>
-                        <label class="e_works_con_label">项目阶段</label>
-                        <div style="float:left; width:50%;">
-                            <ul class="gq">
-                                <li><input type="radio" name="supply"  value="1"/>有个好主意</li>
-                                <li><input type="radio" name="supply"  value="2"/>产品开发中</li>
-                                <li><input type="radio" name="supply"  value="3"/>上线运营</li>
+            <div class="project" style="padding-left:170px;">
+                <div>
+                    <label class="e_works_con_label">项目阶段</label>
+                    <div style="float:left; width:50%;">
+                        <ul class="gq">
+                            <li><input type="radio" name="supply" />有个好主意</li>
+                            <li><input type="radio" name="supply" />产品开发中</li>
+                            <li><input type="radio" name="supply" />上线运营</li>
 
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="clear">
-                        <label class=" e_works_con_label">项目远景：</label>
-                        <div style="float:left;">
-                            <ul class="gq">
-                                <li>预计&nbsp;&nbsp;<input type="text" style="width:150px" id="valuationTime"> </li>
-                                <li>项目估值<input type="text" id="valuationValue"/>&nbsp; 万元</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="clear">
-                        <label class=" e_works_con_label">融资情况;</label>
-                        <div style="float:left;width:50%; padding-top:0px;">
-                            <ul class="gq">
-                                <li><input type="radio" name="supply" value="1"/>等待预设</li>
-                                <li><input type="radio" name="supply" value="2"/> 个人出资</li>
-                                <li><input type="radio" name="supply" value="3"/>  天使投资</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="clear">
-                        <label>融资需求</label>
-                        <input type="text" class="insert" id="investmentValue" />万元&nbsp; &nbsp;<span style="color:red">*留空则表示不需要融资</span>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="project" style="padding-left:180px;">
-
-                    <div>
-                        <label>团队人数：</label>
-                        <input type="text" class="insert" id="tdnumber"/>
-                    </div>
-                    <div>
-                        <label>创始人亮点：</label>
-                        <input type="text" class="input" />
-                    </div>
-                    <div>
-                        <label>团队概念:</label>
-                        <textarea id="tdconcept"></textarea>
-                    </div>
-
-                    <div>
-                        <label class="e_works_con_label">合伙召唤：</label>
-                        <div style="float:left;width:50%;" class="hehuo">
-                            <ul>
-                                <li><input type="checkbox" value="1"/> 技术合伙人</li>
-                                <li><input type="checkbox" value="2"/> 营销合伙人</li>
-                                <li><input type="checkbox" value="3"/> 产品合伙人</li>
-                                <li><input type="checkbox" value="4"/> 运营合伙人</li>
-                                <li><input type="checkbox" value="5"/> 设计合伙人</li>
-                                <li><input type="checkbox" value="6"/> 其他合伙人</li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-                    <div class="clear">
-                        <label>召唤宣言：</label>
-                        <textarea></textarea>
-                    </div>
-
-                    <div>
-                        <label></label>
-                        <input type="button" value="提交" class="submit" />
+                <div class="clear">
+                    <label class=" e_works_con_label">项目远景：</label>
+                    <div style="float:left;">
+                        <ul class="gq">
+                            <li>预计&nbsp;&nbsp;<input type="text" style="width:150px" id="valuationTime"/> </li>
+                            <li>项目估值<input type="text"  id="valuationValue"/>&nbsp; 万元</li>
+                        </ul>
                     </div>
                 </div>
+                <div class="clear">
+                    <label class=" e_works_con_label">融资情况;</label>
+                    <div style="float:left;width:50%; padding-top:0px;">
+                        <ul class="gq">
+                            <li><input type="radio" checked="checked" />等待预设</li>
+                            <li><input type="radio" /> 个人出资</li>
+                            <li><input type="radio" />  天使投资</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clear">
+                    <label>融资需求</label>
+                    <input type="text" class="insert" id="investmentValue"/>万元&nbsp; &nbsp;<span style="color:red">*留空则表示不需要融资</span>
+                </div>
+            </div>
+
+            <div class="project" style="padding-left:180px;">
+
+                <div>
+                    <label>团队人数：</label>
+                    <input type="text" class="insert" id="tdnumber"/>
+                </div>
+                <div>
+                    <label>创始人亮点：</label>
+                    <input type="text" class="input" />
+                </div>
+                <div>
+                    <label>团队概念:</label>
+                    <textarea id="tdconcept"></textarea>
+                </div>
+
+                <div>
+                    <label class="e_works_con_label">合伙召唤：</label>
+                    <div style="float:left;width:50%;" class="hehuo">
+                        <ul>
+                            <li onclick=" check()">
+                                <input type="checkbox"class="partner_1" /> 技术合伙人
+                                <div class="check_1" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+                            </li>
+                            <li onclick=" check_2()">
+                                <input type="checkbox" class="partner_2" /> 营销合伙人
+
+                                <div class="check_2" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+
+                            </li>
+                            <li onclick="check_3()">
+                                <input type="checkbox" class="partner_3" /> 产品合伙人
+
+                                <div class="check_3" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+                            </li>
+                            <li onclick="check_4()">
+                                <input type="checkbox" class="partner_4" /> 运营合伙人
+
+                                <div class="check_4" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+                            </li>
+                            <li onclick="check_5()">
+                                <input type="checkbox" class="partner_5" /> 设计合伙人
+
+                                <div class="check_5" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+                            </li>
+                            <li onclick="check_6()">
+                                <input type="checkbox" class="partner_6" /> 其他合伙人
+
+                                <div class="check_6" style="display:none">
+                                    <div><label>合作方式：</label><select></select></div>
+                                    <div><label>股票期权：</label><select></select></div>
+                                    <div><label>薪资水平：</label><select></select></div>
+                                    <div><label>补充说明：</label><textarea></textarea></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clear">
+                    <label>召唤宣言：</label>
+                    <textarea></textarea>
+                </div>
+
+
+                <div>
+                    <label></label>
+                    <input type="button" value="提交" class="submit" />
+                </div>
+            </div>
+
         </div>
     </div>
-    </form>
 </body>
 </html>
 
 <script type="text/javascript">
+
+
     //图片上传预览    IE是用了滤镜。
     function previewImage(file) {
         var MAXWIDTH = 260;
@@ -253,7 +308,56 @@ String projectpath=basePath + "view";
         param.top = Math.round((maxHeight - param.height) / 2);
         return param;
     }
+
+
+
+    //选中合伙人， 显示下面的div
+    function check() {
+        $(".check_1").css("display", "none")
+        var val = $(".partner_1").attr("checked") == "checked";
+        if (val==true) {
+            $(".check_1").css("display", "block");
+        } 
+    }
+    function check_2() {
+        $(".check_2").css("display", "none")
+        var val = $(".partner_2").attr("checked") == "checked";
+        if (val == true) {
+            $(".check_2").css("display", "block");
+        }
+    }
+    function check_3() {
+        $(".check_3").css("display", "none")
+        var val = $(".partner_3").attr("checked") == "checked";
+        if (val == true) {
+            $(".check_3").css("display", "block");
+        }
+    }
+    function check_4() {
+        $(".check_4").css("display", "none")
+        var val = $(".partner_4").attr("checked") == "checked";
+        if (val == true) {
+            $(".check_4").css("display", "block");
+        }
+    }
+    function check_5() {
+        $(".check_5").css("display", "none")
+        var val = $(".partner_5").attr("checked") == "checked";
+        if (val == true) {
+            $(".check_5").css("display", "block");
+        }
+    }
+    function check_6() {
+        $(".check_6").css("display", "none")
+        var val = $(".partner_6").attr("checked") == "checked";
+        if (val == true) {
+            $(".check_6").css("display", "block");
+        }
+    }
 </script>
+
+
+
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -276,7 +380,7 @@ String projectpath=basePath + "view";
 		title:$("#title").val(),
 		provinceId:$('#loc_province option:selected').val(),
 		cityId:$('#loc_city option:selected').val(),
-		areaId:$('#loc_area option:selected').val(),
+		areaId:$('#loc_town option:selected').val(),
 		prodirection:$("#prodirection").val(),
 		proinfo:$("#proinfo").val(),
 		prophase:$("input[name='supply']:checked").val(),

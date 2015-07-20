@@ -7,6 +7,7 @@ String projectpath=basePath+"view";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh-CN">
+<base herf="<%=basePath %>">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -33,7 +34,7 @@ String projectpath=basePath+"view";
     <div id="menu">
       <ul id="nav">
         <li class="mainlevel"><span class="note">Chocolate Bar</span></li>
-        <li class="mainlevel"><a href="<%=projectpath %>/jsp/main.jsp" target="main">主页</a><!--input an em tag as a space,IE is gread need--> 
+        <li class="mainlevel"><a href="#" target="Main">主页</a><!--input an em tag as a space,IE is gread need--> 
         </li>
         <li class="mainlevel"><a href="<%=projectpath %>/jsp/chuangye.jsp">e创中心</a>
           <ul class="sub_nav_01">
@@ -175,6 +176,9 @@ System.out.println("cookies长度：+"+cookies.length);
     });
     $("#release").click(function(){
 //        window.location.href='<%=basePath%>training_typeController/getallform.do';
+    });
+    $("#release").click(function(){
+    	window.location.href='<%=projectpath%>/jsp/fabu.jsp'
     });
 </script>
 </body>
