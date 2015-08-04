@@ -8,7 +8,7 @@ package com.youxuan.eu.util;
 import java.security.MessageDigest;
 
 public class MD5 {
-	public static String md5(String str) {
+	public String md5(String str) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("MD5");
 			md.update(str.getBytes());

@@ -32,8 +32,9 @@ public class House {
     private Integer createTime;
 
     private Integer staus;
+    
 
-    public Integer getHouseId() {
+	public Integer getHouseId() {
         return houseId;
     }
 

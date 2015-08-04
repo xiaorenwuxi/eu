@@ -2,48 +2,181 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String projectpath = basePath+"view";
 %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-  <head>
-    <base href="<%=basePath%>">
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>优轩eu</title>
+<!-- Bootstrap -->
+<link href="<%=projectpath %>/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<%=projectpath %>/css/index.css" rel="stylesheet" />
+<link href="<%=projectpath %>/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="<%=projectpath %>/js/jquery-1.4.2.js"></script>
+<script language="javascript" type="text/javascript" src="<%=projectpath %>/js/lanrenzhijia.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="clearfix"></div>
+  <div class="header">
+    <div id="menu">
+      <ul id="nav">
+        <li class="mainlevel"><span class="note">Chocolate Bar</span></li>
+        <li class="mainlevel"><a href="#"><img src="<%=projectpath %>/images/icon_dh.png" style="width:10px; height:15px;"/> 成都</a>
+          <ul class="sub_nav_01">
+            <span class="Triangle_con"></span>
+            <li><a href="#">e优孵化</a></li>
+            <li><a href="#">e客融资</a></li>
+            <li><a href="#">e合伙</a></li>
+            <li><a href="#">e优培训</a></li>
+          </ul>
+        </li>
+        <li class="mainlevel"><a href="index.jsp" target="main">主页</a><!--input an em tag as a space,IE is gread need--> 
+        </li>
+        <li class="mainlevel"><a href="#">e创中心</a>
+          <ul class="sub_nav_01">
+            <span class="Triangle_con"></span>
+            <li><a href="#">e优孵化</a></li>
+            <li><a href="#">e客融资</a></li>
+            <li><a href="#">e合伙</a></li>
+            <li><a href="#">e优培训</a></li>
+          </ul>
+        </li>
+        <li class="mainlevel"><a href="#">We-works中心</a>
+          <ul class="sub_nav_01">
+            <span class="Triangle_con"></span>
+            <li><a href="#">e房源</a></li>
+            <li><a href="#">e设备</a></li>
+            <li><a href="#">e代办</a></li>
+            <li><a href="#">We-works定制</a></li>
+          </ul>
+        </li>
+        <li class="mainlevel"><a href="#">e办公系统</a> </li>
+        <li class="mainlevel"><a href="#">SME联盟</a> </li>
+        <li class="mainlevel"><a href="#">e营销系统</a></li>
+        <li class="mainlevel"><a href="#">e客社区</a></li>
+      </ul>
+    </div>
     
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-  </head>
-  
-  <body>
-  <form action="usercontroller/login.do">
-<input type="text" name="data"> 
-<input type="text" name="password">
-<input type="submit">
-</form>
-  <%
-    Cookie[] cookies=request.getCookies();
-if(cookies!=null)
-{
-System.out.println("cookies长度：+"+cookies.length);
-    for(Cookie cookie:cookies)
-    {
-      System.out.println("cookie名称："+cookie.getName());
-    System.out.println("cookie值："+cookie.getValue().toString());
-//     cookie.setMaxAge(0);
-//     if((cookie.getName()).equals("Islogin"))
-//     {
-//      System.out.println("您已经登陆"+cookie.getValue().toString());
-//        if(cookie.getValue().toString().equals("true"));
-//        System.out.println("您已经登陆");
-//        }
-    }
-    }
-    %>
-  </body>
+    <div class="header_input" id="logreg">
+    <a href="<%=projectpath%>/jsp/Regist.jsp">注册</a>
+    |
+    <a href="<%=projectpath%>/jsp/Login.jsp">登录</a>
+    </div>
+  </div>
+  <div class="header_list">
+    <div class="header_list_One">
+      <div class="header_list_One_select">
+        <select>
+          <option>房源搜索</option>
+          <option>代办公服务搜索</option>
+        </select>
+        <input type="text" style="width:72.1%; outline:none; float:left; height:100%; border:none;"/>
+       
+      </div>
+       <input type="button" value="搜索" style="float:left;" class="butt"/>
+      <input type="button" value="免费发布信息"  class="but" id = "release"/>
+    </div>
+    <div class="header_list_Three">
+    <img src="<%=projectpath %>/images/jpg_banner.jpg">
+    </div>
+    <div class="header_list_Four">
+      <div class="header_list_Four_list">
+        <div class="header_list_Four_list_we_zuo">We-works服务</div>
+        <div class="header_list_Four_list_we_you">
+          <img src="<%=projectpath %>/images/icon_sm_01.png"/></div>
+      </div>
+      <div class="header_list_Four_list">
+        <div class="header_list_Four_list_we_zuo">e优系统</div>
+        <div class="header_list_Four_list_we_you">
+           <img src="<%=projectpath %>/images/icon_sm_02.png"/></div>
+      </div>
+      <div class="header_list_Four_list">
+        <div class="header_list_Four_list_we_zuo">e创中心</div>
+        <div class="header_list_Four_list_we_you">
+          <img src="<%=projectpath %>/images/icon_sm_03.png"/></div>
+      </div>
+      <div class="header_list_Four_list">
+        <div class="header_list_Four_list_we_zuo">SME联盟</div>
+        <div class="header_list_Four_list_we_you">
+          <img src="<%=projectpath %>/images/icon_sm_04.png"/></div>
+      </div>
+    </div>
+    <div class="header_list_Five">
+      <div class="header_list_Five_zuo">
+        <div class="header_list_Five_zuo1">
+          <div class="header_list_Five_zuo1_1">
+            <ul>
+              <a href=""><li class="aa">房源信息</li></a>
+              <li>发布</li>
+            </ul>
+          </div>
+          <div class="header_list_Five_zuo1_2">2</div>
+        </div>
+        <div class="header_list_Five_zuo2">
+          <div class="header_list_Five_zuo2_1">1</div>
+          <div class="header_list_Five_zuo2_2"><img src="<%=projectpath %>/images/png_ekfb.png" /></div>
+          <div class="header_list_Five_zuo2_3">3</div>
+        </div>
+        <div class="header_list_Five_zuo3">
+          <div class="header_list_Five_zuo3_1">1</div>
+          <div class="header_list_Five_zuo3_2">2</div>
+        </div>
+      </div>
+      <div class="header_list_Five_you">
+        <div class="header_list_Five_you1">
+          <div class="header_list_Five_you1_1">1</div>
+          <div class="header_list_Five_you1_2">2</div>
+          <div class="header_list_Five_you1_3">3</div>
+        </div>
+        <div class="header_list_Five_you2">
+          <div class="header_list_Five_you2_1">1</div>
+          <div class="header_list_Five_you2_2"><img src="<%=projectpath %>/images/png_exxx.png" /></div>
+          <div class="header_list_Five_you2_3">3</div>
+        </div>
+        <div class="header_list_Five_you3">
+          <div class="header_list_Five_you3_1">1</div>
+          <div class="header_list_Five_you3_2">2</div>
+        </div>
+      </div>
+    </div>
+       
+    <div class="footer"></div>
+  </div>
+</div>
+<script>
+ $(".header_list_Five_zuo1_1 div").mouseover(function () {
+        
+        $(".header_list_Five_zuo1_1 div").animate({fontSize:"20px"});
+    })
+    $(".header_list_Five_zuo1_1 div").mouseout(function () {
+        $(".header_list_Five_zuo1_1 div").animate({ fontSize: "12px" });
+    })
+    $("#release").click(function(){
+    
+    	window.location.href='<%=projectpath%>/jsp/fabu.jsp'
+    });
+
+</script>
+
+<script>
+	
+	var username= <%=request.getSession().getAttribute("username")%>
+	if(username!=null){
+		document.getElementById("logreg").style.display='none'
+		logreg.innerHTML=username
+		document.getElementById("logreg").style.display='block'
+	
+	}else{
+	
+		document.getElementById("logreg").style.display='block'
+	}
+	
+</script>
+</body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="org.apache.catalina.connector.Response"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -9,20 +10,32 @@ String projectpath=basePath+"view";
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>用户注册</title>
     <link href="<%=projectpath %>/css/Register.css" rel="stylesheet" />
+    
+    <script type="text/javascript">
+	function changeValidateCode(obj) {   
+		document.getElementById("imc").disabled=true; 
+		document.getElementById("imc").src="<%=basePath%>randomcontroller/image.do?="+new Date().getTime();
+	}
+	</script>
+	<script type="text/javascript">
+	function changeValidateCode1(obj) {   
+		document.getElementById("imc1").disabled=true; 
+		document.getElementById("imc1").src="<%=basePath%>randomcontroller/image.do?="+new Date().getTime();
+	}
+	</script>
 </head>
 <body>
-
     <div class="container">
         <div class="content">
 
             <div class="header_logo">
-                <img src="../images/u0.png" />
+               <img style="width: 480px;" src="http://localhost:8080/eu/view/images/u0.png">
             </div>
             <div class="button">
                 <div class="left">
-                    <a href="<%=projectpath %>/jsp/Main.jsp">返回首页</a>
+                    <a href="<%=projectpath %>/jsp/index.jsp">返回首页</a>
                 </div>
                 <div class="right">
                     <a href="<%=projectpath %>/jsp/Login.jsp">立即登录</a>
@@ -57,11 +70,12 @@ String projectpath=basePath+"view";
                 <div>
                     <div style="width:270px;margin-top:0px;" class="left">
                         <label>验证码：</label>
-                        <input type="text" style="width:120px;" id="verification"/>
+                        <input type="text" name="verify" id="verify" style="width:120px;" />
+                       
                     </div>
 
                     <div style="width: 220px; float: left; margin-top: 0px;">
-                    <img src="../images/u24.png" /> <a style="font-size:12px;" href="#">换一张</a>
+                     <img src="<%=basePath %>randomcontroller/image.do"    id="imc" onload="im.disabled=false;" onclick="changeValidateCode(this)"/> ${errorinfo}
                     </div>
                 </div>
                 <div style="clear:both">
@@ -71,7 +85,7 @@ String projectpath=basePath+"view";
                 </div>
 
                 <div class="register_button">
-                    <input type="submit" value="确认注册"></button>
+                    <input type="submit" value="确认注册">
                 </div>
             </div>
 </form>
@@ -99,12 +113,12 @@ String projectpath=basePath+"view";
                 <div>
                     <div style="width: 270px; margin-top: 0px;" class="left">
                         <label>验证码：</label>
-                        <input type="text" style="width:120px;" id="verification_email"/>
+                        <input type="text"  id="verify" name= " verify" style="width:120px;" id="verification_email"/>
                     </div>
 
                     <div style="width: 220px; float: left; margin-top: 0px;">
-                        <img src="../images/u24.png" /> <a style="font-size:12px;" href="#">换一张</a>
-                    </div>
+                        <img src="<%=basePath %>randomcontroller/image.do"    id="imc1" onload="im.disabled=false;"  onclick="changeValidateCode1(this)"/> ${errorinfo}
+                     </div>
                     <div style="clear:both">
                         <input type="checkbox" class="checkbox" style="width:15px;height:15px;" id="checkbox_email" checked="checked" disabled="true"/> 我接受
                         <span style="margin-left:30px;"><a>服务条款</a></span>
@@ -129,50 +143,80 @@ String projectpath=basePath+"view";
 
 <script>
 
-
-    //改变选项卡点击过后的样式
-    $(".card").click(function () {
-        $(".card").removeClass("click");
-        $(this).addClass("click");
-    });
-
+//改变选项卡点击过后的样式
+$(".card").click(function() {
+	$(".card").removeClass("click");
+	$(this).addClass("click");
+});
 
 
-    //在手机注册和邮箱注册直接跳转
-    function Choose(id) {
-        $(".register_con").css("display", "none");
-        var id1 = "#" + id;
-        $(id1).css("display", "block");
-    }
-function check(){
-var erro="";
-if($(".register_con").css("display")=="block")
-{
-if($("#password_phone").val()!=$("#ispassword_phone").val() ||$("#password_phone").val()=="")
-erro="密码有误,"
+
+//在手机注册和邮箱注册直接跳转
+
+function Choose(id) {
+	$(".register_con").css("display", "none");
+	var id1 = "#" + id;
+	$(id1).css("display", "block");
 }
-else{
-if($("#userName").val()=="")
-erro="用户名不能为空,";
-if($("#password_email").val()!=$("#ispassword_email").val() || $("#ispassword_email").val()=="")
-erro=erro+"密码有误,";
-}
-if(erro!="")
-{
-alert(erro);
-return false;
-}
-return true;
+
+function check() {
+	
+	
+	
+	var erro = "";
+	if ($(".register_con").css("display") == "block") {
+		if ($("#password_phone").val() != $("#ispassword_phone").val()) erro = "密码前后不一致"
+		
+		if ($("password_phone").val() == "" || $("#ispassword_phone").val() == "") 
+		erro = "密码不能为空"
+		
+	}
+		
+	
+
+	else{
+	if ($("#userName").val() == "") 
+		erro = "用户名不能为空,";
+	
+
+	if ($("#password_email").val() != $("#ispassword_email").val()) erro = erro + "密码前后不一致,";
+
+	if ($("#password_email").val() == "" || $("#ispassword_email").val() == "") 
+		erro = erro + "密码不能为空"
+	}
+	if (erro != "") {
+		alert(erro);
+		return false;
+	}
+	return true; 
+	
+	//校验验证码
+	
 }
 
 /**
 判断是否是手机号码
 **/
- var regBox = {
-        regEmail : /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,//邮箱
-        regName : /^[a-z0-9_-]{3,16}$/,//用户名
-        regMobile : /^0?1[3|4|5|8][0-9]\d{8}$/,//手机
-        regTel : /^0[\d]{2,3}-[\d]{7,8}$/
-    }
+var regBox = {
+	regEmail: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
+	//邮箱
+	regName: /^[a-z0-9_-]{3,16}$/,
+	//用户名
+	regMobile: /^0?1[3|4|5|8][0-9]\d{8}$/,
+	//手机
+	regTel: /^0[\d]{2,3}-[\d]{7,8}$/
+}
+
 </script>
+
+<script language="JavaScript">
+function refreshcapture(){
+var imgid=document.getElementById('captchaImg');
+imgid.setAttribute('src','stickyCaptcha.png?'+Math.random());
+//加入随机数不然地址相同
+}
+</script>
+ 
+ 
+ 
 

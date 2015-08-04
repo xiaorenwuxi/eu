@@ -1,6 +1,5 @@
 package com.youxuan.eu.mapper;
 
-import com.youxuan.eu.model.Agency;
 import com.youxuan.eu.model.AgencyWithBLOBs;
 
 public interface AgencyMapper {
@@ -16,5 +15,4 @@ public interface AgencyMapper {
 
     int updateByPrimaryKeyWithBLOBs(AgencyWithBLOBs record);
 
-    int updateByPrimaryKey(Agency record);
 }

@@ -24,8 +24,49 @@ public class Equipment {
     private Integer createTime;
 
     private String content;
+    
+    private Integer source;
+    
+    private String picarr;
+    
+    private String address;
+    
+    private Integer telphone;
+    
 
-    public Integer getEquipmentId() {
+    public Integer getSource() {
+		return source;
+	}
+
+	public void setSource(Integer source) {
+		this.source = source;
+	}
+
+	public String getPicarr() {
+		return picarr;
+	}
+
+	public void setPicarr(String picarr) {
+		this.picarr = picarr;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getTelphone() {
+		return telphone;
+	}
+
+	public void setTelphone(Integer telphone) {
+		this.telphone = telphone;
+	}
+
+	public Integer getEquipmentId() {
         return equipmentId;
     }
 

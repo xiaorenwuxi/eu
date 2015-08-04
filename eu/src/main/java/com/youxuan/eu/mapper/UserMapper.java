@@ -4,7 +4,7 @@ import com.youxuan.eu.model.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
-
+ 
     int insert(User record);
 
     int insertSelective(User record);
@@ -17,5 +17,5 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     
-     public User selectallcol(User user);
+    public User selectallcol(User user);
 }

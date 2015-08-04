@@ -10,7 +10,7 @@ public interface HouseMapper {
 
     int insertSelective(HouseWithBLOBs record);
 
-    HouseWithBLOBs selectByPrimaryKey(Integer houseId);
+    HouseWithBLOBs selectByPrimaryKey(int data);
 
     int updateByPrimaryKeySelective(HouseWithBLOBs record);
 

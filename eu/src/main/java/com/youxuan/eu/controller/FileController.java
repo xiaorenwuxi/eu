@@ -25,7 +25,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 public class FileController {
 
 	@RequestMapping("UploadAction")
-	public void UPload(HttpServletRequest request,HttpServletResponse response) throws IllegalStateException, IOException {  
+	public void UPload(HttpServletRequest request,HttpServletResponse response) throws Exception {  
         
 		 PrintWriter out=response.getWriter();
 		//创建一个通用的多部分解析器  

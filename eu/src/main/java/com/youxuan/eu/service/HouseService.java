@@ -1,6 +1,6 @@
 package com.youxuan.eu.service;
 
-import com.youxuan.eu.model.House;
+import com.youxuan.eu.model.HouseWithBLOBs;
 /**
  * 
  * @author 朱贵杰
@@ -8,6 +8,6 @@ import com.youxuan.eu.model.House;
  * @since 2015/7/11
  *
  */
-public interface HouseService extends BaseService<House>{
+public interface HouseService extends BaseService<HouseWithBLOBs>{
 
 }

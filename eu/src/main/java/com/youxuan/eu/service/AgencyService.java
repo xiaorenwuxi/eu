@@ -1,6 +1,6 @@
 package com.youxuan.eu.service;
 
-import com.youxuan.eu.model.Agency;
+import com.youxuan.eu.model.AgencyWithBLOBs;
 
 /**
  * 
@@ -9,6 +9,6 @@ import com.youxuan.eu.model.Agency;
  * @since 2015/7/11
  *
  */
-public interface AgencyService extends BaseService<Agency>{
-
+public interface AgencyService extends BaseService<AgencyWithBLOBs>{
+			
 }

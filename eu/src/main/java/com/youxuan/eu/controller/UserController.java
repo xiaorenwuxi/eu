@@ -1,49 +1,41 @@
 package com.youxuan.eu.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
 import com.youxuan.eu.model.User;
 import com.youxuan.eu.service.UserService;
 import com.youxuan.eu.util.MD5;
 
-/**
- * 用户提交控制类
- * 
- * @author 邹龙
- *
- */
 @Controller
 @RequestMapping("/usercontroller")
 public class UserController {
 	@Autowired
 	public UserService userService;
 
-
-	@SuppressWarnings("static-access")
-	
 	@RequestMapping("regist")
-	public ModelAndView  addUser(User user,HttpServletResponse response) {
-		MD5 md5=new MD5();
-		user.setPassword(md5.md5(user.getPassword()));
+	public void   addUser(HttpServletRequest request,HttpServletResponse response,User user) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String ccode = request.getParameter("verify");
+		String scode = (String)request.getSession().getAttribute("code");
+		if(ccode!=null && scode!=null && scode.equalsIgnoreCase(ccode)){
+			MD5 md5=new MD5();
+			user.setPassword(md5.md5(user.getPassword()));
+			userService.add(user);
+			response.sendRedirect("/eu/view/jsp/index.jsp");
+		}else{
+			request.setAttribute("errorinfo", "验证码错误");
+			request.getRequestDispatcher("/view/jsp/Regist.jsp").forward(request, response);
+			//怎么留在当前的页面，而不跳转到controller
+		}
 		
-		userService.add(user);
-		Cookie cookie_login=new Cookie("Islogin", "true");
-		Cookie cookie_user=new Cookie("user", JSON.toJSONString(user));
-		response.addCookie(cookie_login);
-		response.addCookie(cookie_user);
-		return new ModelAndView("/jsp/Main");
 	}
 
 	/**
@@ -55,31 +47,21 @@ public class UserController {
 	 * @param spring自动传入的响应
 	 * @return
 	 */
-	@SuppressWarnings("static-access")
 	@RequestMapping("login")
-	public void login(String data, String password,
-			HttpServletResponse response) {
-		PrintWriter out = null;
-		MD5 md5=new MD5();
-		try {
-			 out=response.getWriter();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		User GetDate = getuser(data);
-System.out.println(GetDate.getPassword()+""+md5.md5(password));
-		if (GetDate != null && GetDate.getPassword().equals(md5.md5(password)))
-		{
-			out.write(JSON.toJSONString(GetDate));
-		}
-		else {
-			out.write("登陆失败");
-		}
-		out.flush();
-		out.close();
+	public void login(HttpServletRequest request,HttpServletResponse response) throws Exception{
+			request.setCharacterEncoding("UTF-8");
+			String data = request.getParameter("data");
+			String password = request.getParameter("password");
+			MD5 encrypt = new MD5();
+			User user = getuser(data);
+			if(user!=null && user.getPassword().equalsIgnoreCase(encrypt.md5(password))){
+				response.sendRedirect("/eu/view/jsp/index.jsp");
+				request.getSession().setAttribute("username", data);
+			}else{
+				request.setAttribute("errorinfo", "登录失败");
+				request.getRequestDispatcher("/view/jsp/Login.jsp").forward(request, response);
+			}
 	}
-
 	/**
 	 * 根据提供的data值获取用户，data可以是用户名，电话，邮箱
 	 * 

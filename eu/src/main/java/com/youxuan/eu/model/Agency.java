@@ -20,8 +20,28 @@ public class Agency {
     private Integer createTime;
 
     private String contact;
+    
+    private String address;
+    
+    private Integer telphone;
 
-    public Integer getAgencyId() {
+    public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Integer getTelphone() {
+		return telphone;
+	}
+
+	public void setTelphone(Integer telphone) {
+		this.telphone = telphone;
+	}
+
+	public Integer getAgencyId() {
         return agencyId;
     }
 

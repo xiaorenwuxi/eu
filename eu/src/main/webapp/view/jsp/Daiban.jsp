@@ -44,10 +44,10 @@ String projectPath=basePath+"view";
                 <span>e创中心</span>
             </div>
         </div>
-
+	<form action="/eu/agency/add.do" method="post">
         <div class="e_works_con">
             <div>
-                <label>标题：</label><input type="text" class="input" />
+                <label>标题：</label><input type="text" class="input" name="title" id="title" />
             </div>
             <div class="address">
                 <label class="e_works_con_label">服务区域：</label>
@@ -68,37 +68,38 @@ String projectPath=basePath+"view";
             </div>
             <div class="clear">
                 <label>详细地址：</label>
-                <input type="text" class="input" />
+                <input type="text" class="input"  name="address" id="address"/>
             </div>
             <div class="clear">
-                <label>类型：</label><select id="Select1" class="input">
-                    <option>选择代办服务类型</option>
+                <label>类型：</label><select id="Select1" class="input" name="agencyTypeId" id="agencyTypeId">
+                    <option >选择代办服务类型</option>
 
                 </select>
             </div>
             <div>
-                <label>价格：</label> <input type="text" class="insert" />
+                <label>价格：</label> <input type="text" class="insert"  name="price" id="price"/>
             </div>
             <div>
                 <label class="label_align" style="float:left">展示：</label>
-                <div id="show" class="show"></div>
+                <div id="show" class="show" name="picarr"></div>
             </div>
             <div class="clear">
-                <label class="label_align">补充说明：</label> <textarea></textarea>
+                <label class="label_align">补充说明：</label> <textarea name="content" id="content"></textarea>
             </div>
             <div>
-                <label>电话：</label> <input type="text" class="insert" />
+                <label>电话：</label> <input type="text" class="insert" name="telphone"  id="telphone"/>
             </div>
             <div>
-                <label>联系人：</label> <input type="text" class="insert" />
+                <label>联系人：</label> <input type="text" class="insert" name="contact" id="contact"/>
             </div>
             <div>
                 <label></label>
-                <input id="button_submit" type="button" value="提交" class="submit" />
+                <input id="button_submit" type="submit" value="提交" class="submit" />
             </div>
 
 
         </div>
+        </form>
     </div>
     <script>
 /**

@@ -7,7 +7,7 @@ String projectpath=basePath+"view";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="zh-CN">
-<base herf="<%=basePath %>">
+<base href="<%=basePath %>">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -148,34 +148,12 @@ String projectpath=basePath+"view";
     <div class="footer"></div>
   </div>
 </div>
-  <%
-    Cookie[] cookies=request.getCookies();
-if(cookies!=null)
-{
-System.out.println("cookies长度：+"+cookies.length);
-    for(Cookie cookie:cookies)
-    {
-      System.out.println("cookie名称："+cookie.getName());
-    System.out.println("cookie值："+cookie.getValue().toString());
-//     cookie.setMaxAge(0);
-//     if((cookie.getName()).equals("Islogin"))
-//     {
-//      System.out.println("您已经登陆"+cookie.getValue().toString());
-//        if(cookie.getValue().toString().equals("true"));
-//        System.out.println("您已经登陆");
-//        }
-    }
-    }
-    %>
 <script type="text/javascript">
     $("#login_input").click(function(){
         window.location.href='<%=projectpath%>/jsp/Login.jsp';
     });
         $("#regist_input").click(function(){
         window.location.href='<%=projectpath%>/jsp/Regist.jsp';
-    });
-    $("#release").click(function(){
-//        window.location.href='<%=basePath%>training_typeController/getallform.do';
     });
     $("#release").click(function(){
     	window.location.href='<%=projectpath%>/jsp/fabu.jsp'

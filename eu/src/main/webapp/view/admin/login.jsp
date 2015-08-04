@@ -2,62 +2,50 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String projectpath = basePath + "view";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>	
+<!DOCTYPE html>
+<html>
 <head>
-<title>管理员登陆</title>
+<title>后台登录</title>
+<link href="<%=projectpath %>/css/style.css" rel='stylesheet' type='text/css' />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="App Sign in Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
-<link href="../css/style.css" rel='stylesheet' type='text/css' />
+</script>
 <!--webfonts-->
-<link href='http://fonts.useso.com/css?family=PT+Sans:400,700,400italic,700italic|Oswald:400,300,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.useso.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+<link href='http://fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
-<script src="http://ajax.useso.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 </head>
 <body>
-
-<script>
-$(document).ready(function(c) {
-	$('.close').on('click', function(c){
-		$('.login-form').fadeOut('slow', function(c){
-	  		$('.login-form').remove();
-		});
-	});	  
-});
-</script>
-
- <!--SIGN UP-->
- <h1>管理员登陆</h1>
-<div class="login-form">
-	<div class="close"> </div>
-		<div class="head-info">
-			<label class="lbl-1"> </label>
-			<label class="lbl-2"> </label>
-			<label class="lbl-3"> </label>
-		</div>
-			<div class="clear"> </div>
-	<div class="avtar">
-		<img src="../images/avtar.png" />
-	</div>
-			<form action="../../admin/login.do" method="post">
-					<input type="text" class="text" value="username" name="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}" >
-						<div class="key">
-					<input type="password" value="password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-						</div>
-						<div class="signin">
-								<input type="submit" value="登陆" >
-						</div>
+	<h1>管理员登录</h1>
+		<div class="app-cam">
+			<div class="cam"><img src="<%=projectpath %>/images/cam.png" class="img-responsive" alt="" /></div>
+			<form action="<%=basePath %>admin/login.do">
+				<input type="text" class="text" name="username" value="username" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}" >
+				<input type="password" value="Password" name="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+				<div class="submit"><input type="submit"  value="登录" ></div>
+				<div class="clear"></div>
+				<div class="buttons">
+					<!-- <ul>
+						<li><a href="#" class="hvr-sweep-to-right">Sign in with Facebook</a></li>
+						<li><a href="#" class="hvr-sweep-to-left">Sign in with Twitter</a></li>
+						<div class="clear"></div>
+					</ul> -->
+				</div>
+				<div class="new">
+					<p><a href="#">忘记密码 ?</a></p>
+<!-- 					<p class="sign"></p>
+ -->					<div class="clear"></div>
+				</div>
 			</form>
-	
-</div>
- <div class="copy-rights">
-					<p>欢迎光临优轩管理员登陆</p>
-			</div>
-
+		</div>
+	<!--start-copyright-->
+   		<div class="copy-right">
+				<p>成都优轩科技有限公司后台登陆</p>
+		</div>
+	<!--//end-copyright-->
 </body>
 </html>

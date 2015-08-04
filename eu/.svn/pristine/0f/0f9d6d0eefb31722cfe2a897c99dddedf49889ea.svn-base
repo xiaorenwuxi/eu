@@ -1,0 +1,96 @@
+package com.youxuan.eu.controller;
+
+import java.io.PrintWriter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.youxuan.eu.model.User;
+import com.youxuan.eu.service.UserService;
+import com.youxuan.eu.util.MD5;
+
+@Controller
+@RequestMapping("/usercontroller")
+public class UserController {
+	@Autowired
+	public UserService userService;
+
+	@RequestMapping("regist")
+	public void   addUser(HttpServletRequest request,HttpServletResponse response,User user) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String ccode = request.getParameter("verify");
+		String scode = (String)request.getSession().getAttribute("code");
+		if(ccode!=null && scode!=null && scode.equalsIgnoreCase(ccode)){
+			MD5 md5=new MD5();
+			user.setPassword(md5.md5(user.getPassword()));
+			userService.add(user);
+			response.sendRedirect("/eu/view/jsp/index.jsp");
+		}else{
+			request.setAttribute("errorinfo", "验证码错误");
+			request.getRequestDispatcher("/view/jsp/Regist.jsp").forward(request, response);
+			//怎么留在当前的页面，而不跳转到controller
+		}
+		
+	}
+
+	/**
+	 * 用来用户登陆
+	 * 
+	 * @param data可以是用户名
+	 *            ，电话号码，邮箱，是提交数据中的索引值
+	 * @param password密码
+	 * @param spring自动传入的响应
+	 * @return
+	 */
+	@RequestMapping("login")
+	public void login(HttpServletRequest request,HttpServletResponse response) throws Exception{
+			request.setCharacterEncoding("UTF-8");
+			String data = request.getParameter("data");
+			String password = request.getParameter("password");
+			MD5 encrypt = new MD5();
+			User user = getuser(data);
+			if(user!=null && user.getPassword().equalsIgnoreCase(encrypt.md5(password))){
+				response.sendRedirect("/eu/view/jsp/index.jsp");
+				request.getSession().setAttribute("username", data);
+			}else{
+				request.setAttribute("errorinfo", "登录失败");
+				request.getRequestDispatcher("/view/jsp/Login.jsp").forward(request, response);
+			}
+	}
+	/**
+	 * 根据提供的data值获取用户，data可以是用户名，电话，邮箱
+	 * 
+	 * @param data
+	 *            传入的获取值
+	 * @return 返回一个用户（User）
+	 */
+	public User getuser(String data) {
+		User selectUser = new User();
+		if (data.indexOf("@") > 0)
+			selectUser.setEmail(data);
+		else if (isMobileNO(data))
+			selectUser.setMobile(data);
+		else
+			selectUser.setUserName(data);
+		return userService.select(selectUser);
+	}
+
+	/**
+	 * 判断是否为电话号码
+	 * 
+	 * @param mobiles要判断的字符串
+	 * @return 为boolean 是否是电话号码
+	 */
+	public boolean isMobileNO(String mobiles) {
+		Pattern p = Pattern
+				.compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
+		Matcher m = p.matcher(mobiles);
+		return m.matches();
+	}
+}
